@@ -13,7 +13,8 @@ white:false, nomen:false */
   var pullDownGeneratedCount = 0,
   pullUpGeneratedCount = 0,
   listSelector = "div.hrwapper div.blog-data ul.ui-listview",
-  lastItemSelector = listSelector + " > li:last-child";
+  lastItemSelector = listSelector + " > li:last-child",
+  firstItemSelector = listSelector + " > li:first-child";
   var page=2;
   /* For this example, I prepend three rows to the list with the pull-down, and append
   * 3 rows to the list with the pull-up. This is only to make a clear illustration that the
@@ -39,8 +40,8 @@ white:false, nomen:false */
 
   function gotPullUpData(event, data) {
     var i,
-    iscrollview = data.iscrollview;
-    if (pullDownGeneratedCount == 0) app.blog(1);
+    iscrollview = data.iscrollview, newContent="";
+    if (pullDownGeneratedCount == 0) { pullDownGeneratedCount++; app.blog(--page); }
     else {
     newContent = app.blog(++page);
     }
@@ -55,10 +56,9 @@ white:false, nomen:false */
     // after the new elements are added. The scroller will smoothly scroll to the bottom over
     // a 400mSec period. It's important to use the refresh() callback to insure that the scroll
     // isn't started until the scroller has first been refreshed.
-    iscrollview.refresh(null, null,
-      $.proxy(function afterRefreshCallback(iscrollview) {
-        this.scrollToElement(lastItemSelector, 100);
-      }, iscrollview) );
+    iscrollview.refresh(null, null,$.proxy(function afterRefreshCallback(iscrollview) {
+        this.scrollToElement(lastItemSelector, 50);}
+      , iscrollview) );
     }
 
     // This is the callback that is called when the user has completed the pull-down gesture.

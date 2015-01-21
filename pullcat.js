@@ -51,11 +51,11 @@ pullDownGeneratedCount++;
 
   function gotPullUpData(event, data) {
     var i,
-    iscrollview = data.iscrollview;
-if (pullDownGeneratedCount == 0) onPullDown (event, data);
-    else {
+    iscrollview = data.iscrollview, newContent="";
+if (pullDownGeneratedCount == 0 && page==2) { pullDownGeneratedCount++; app.category(urlParams["cat"], page); }
+   else {
    newContent = app.category(urlParams["cat"], ++page);
-    }
+}
     
     // for (i=0; i<3; i+=1) {
     //   newContent += "<li>Pullup-generated row " + (++pullUpGeneratedCount) + "</li>";
