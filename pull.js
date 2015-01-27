@@ -13,8 +13,7 @@ white:false, nomen:false */
   var pullDownGeneratedCount = 0,
   pullUpGeneratedCount = 0,
   listSelector = "div.hrwapper div.blog-data ul.ui-listview",
-  lastItemSelector = listSelector + " > li:last-child",
-  firstItemSelector = listSelector + " > li:first-child";
+  lastItemSelector = listSelector + " > li:last-child";
   var page=2;
   /* For this example, I prepend three rows to the list with the pull-down, and append
   * 3 rows to the list with the pull-up. This is only to make a clear illustration that the
@@ -35,31 +34,40 @@ white:false, nomen:false */
 
   }
   $(listSelector).prepend(newContent).listview("refresh");  // Prepend new content and refresh listview
+       
+        $('#all-posts').listview('refresh');
+            
+      $("ul:jqmData(role='listview')").listview("refresh");
   data.iscrollview.refresh();    // Refresh the iscrollview
   }
 
   function gotPullUpData(event, data) {
+       $('#all-posts').listview('refresh');
+           $("ul:jqmData(role='listview')").listview("refresh");
+      // localStorage.removeItem('postData');
     var i,
     iscrollview = data.iscrollview, newContent="";
-    if (pullDownGeneratedCount == 0) { pullDownGeneratedCount++; app.blog(--page); }
+    if (pullDownGeneratedCount === 0) app.blog(1);
     else {
     newContent = app.blog(++page);
     }
     // for (i=0; i<3; i+=1) {
     //   newContent += "<li>Pullup-generated row " + (++pullUpGeneratedCount) + "</li>";
     // }
-    $(listSelector).append(newContent).listview("refresh");
-
+   // $(listSelector).append(newContent).listview("refresh");
+  }
+       
     // The refresh is a bit different for the pull-up, because I want to demonstrate the use
     // of refresh() callbacks. The refresh() function has optional pre and post-refresh callbacks.
     // Here, I use a post-refresh callback to do a timed scroll to the bottom of the list
     // after the new elements are added. The scroller will smoothly scroll to the bottom over
     // a 400mSec period. It's important to use the refresh() callback to insure that the scroll
     // isn't started until the scroller has first been refreshed.
-    iscrollview.refresh(null, null,$.proxy(function afterRefreshCallback(iscrollview) {
-        this.scrollToElement(lastItemSelector, 50);}
-      , iscrollview) );
-    }
+//    iscrollview.refresh(null, null,
+//      $.proxy(function afterRefreshCallback(iscrollview) {
+//        this.scrollToElement(lastItemSelector, 100);
+//      }, iscrollview) );
+//    }
 
     // This is the callback that is called when the user has completed the pull-down gesture.
     // Your code should initiate retrieving data from a server, local database, etc.

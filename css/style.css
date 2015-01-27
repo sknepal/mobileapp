@@ -10,7 +10,14 @@
 }
 .hwrapper {
 	background-color: #000;
+  
 }
+/*
+div.hwrapper { overflow: hidden; width: inherit; }
+.ui-page {
+    -webkit-backface-visibility: hidden;
+}
+*/
 .hwrapper .header {
 	text-align: center;
 	line-height: 55px;

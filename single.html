@@ -12,6 +12,8 @@
       <script type="text/javascript" src="js/index.js"></script>
       <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
       <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+        <script>
+          </script>
         <title>Single Post</title>
     </head>
     <body>
@@ -46,17 +48,74 @@
 
         <script id="single-template" type="text/x-handlebars-template">
             <h1>{{{title}}}</h1>
-            {{{content}}}
+            {{{content}}} 
+            <div data-role="collapsible" data-mini="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-theme="a" data-content-theme="a">
+<!--
+                <h3>Comments</h3>    <div data-role="collapsible" data-mini="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-theme="b" data-content-theme="a">
+                    <h3>Add your own comment</h3>
+                <form>
+                     <label>Name: </label>
+          <input type = "text"
+                 id = "name"
+                 value = "" pattern=".{3,}" required title="3 characters minimum" size="3"/>
+                <label>Email: </label>
+          <input type = "email"
+                 id = "email"
+                 value = "" required />
+                    <label>Comment: </label>
+                 <textarea cols="40" rows="8" pattern=".{20,}" required title="20 characters minimum" id="comment"></textarea> 
+        <br />
+        <input type="submit" value="Submit now" onclick="app.commentSubmit(document.getElementById('name').value, document.getElementById('email').value, document.getElementById('comment').value, {{{id}}})" />
+                    </form>
+
+                
+                
+                
+        </p>
+                </div>
+                <div data-role="collapsible" data-mini="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-theme="b" data-content-theme="a">
+-->
+                    <h3>View Comments</h3>
+            {{#each comments}}
+            <h3>{{{name}}}</h3>{{date}}
+            <p>{{{content}}}</p>
+                <hr>
+            {{/each}}
+                </div>
+                  <div data-role="popup" id="popupComment" class="ui-content">
+<!--	<form action="" onsubmit="">-->
+                     <label>Name: </label>
+          <input type = "text" id = "name" value = "" pattern=".{3,}" required title="3 characters minimum" size="3"/>
+                <label>Email: </label>
+          <input type = "email" id = "email" value = "" required />
+                    <label>Comment: </label>
+                 <textarea cols="40" rows="8" pattern=".{20,}" required title="20 characters minimum" id="comment"></textarea> 
+        <br />
+        
+        <input type="submit" value="Submit now" onclick="app.commentSubmit(document.getElementById('name').value, document.getElementById('email').value, document.getElementById('comment').value, {{{id}}});$('#popupComment').popup('close');" />             
+<!--</form>-->
+</div>
+            </div>
+       
         </script>
+<!--          $('#popupComment').popup('close');-->
+      
 
 </div>
-    <!-- <div id="footer" data-role="footer">
-        <h1><i class="icon-coffee"></i> 2015 - built with phonegap and jquery mobile</h1>
-    </div> -->
+    <div class="footer" data-id="footer" data-role="footer" data-tap-toggle="true" data-transition="slide">
+        <div data-role="navbar" data-theme="b" data-content-theme="b">
+		<ul>
+			<li><a href="#">Share</a></li>
+			<li><a href="#popupComment" data-rel="popup" data-position-to="window">Commment</a></li>
+		
+		</ul>
+	</div> </div>
 
 
 
         <script type="text/javascript">
+             
+        
         //var myParam = location.search.split('?=')[1]
             app.single();
         </script>

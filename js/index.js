@@ -1,4 +1,4 @@
-/*
+ /*
 * Licensed to the Apache Software Foundation (ASF) under one
 * or more contributor license agreements. See the NOTICE file
 * distributed with this work for additional information
@@ -54,6 +54,48 @@ var app = {
     receivedElement.setAttribute('style', 'display:block;');
     console.log('Received Event: ' + id);
   },
+commentSubmit: function(name, email, comment, id_of_post){
+$.ajax({
+url: 'http://www.thelacunablog.com/api/respond/submit_comment/?post_id=' + id_of_post + '&name=' + name + '&email=' + encodeURIComponent(email) + '&content=' + comment,
+type: 'GET',
+dataType: 'json',
+success: function(data) {
+    // $('#popupComment').html(data);
+    // alert(data);
+  //   var json = JSON.parse(data);
+                    if(data.status === "success") {
+                       // return '"true"';
+                        var intervalSuccess = setInterval(function(){
+       $.mobile.loading('show', {
+    theme: "b",
+    text: "Your comment has been submitted. The author may still need to approve it before it appears.",
+    textonly: true,
+    textVisible: true
+});
+        clearInterval(intervalSuccess);
+    },1); 
+                    }
+                    //return "\"" + json.error + "\"";
+    var interval = setInterval(function(){
+       $.mobile.loading('show', {
+    theme: "b",
+    text: "Error: " + data.error,
+    textonly: true,
+    textVisible: true
+});
+        clearInterval(interval);
+    },1); 
+    
+           
+var interval2 = setInterval(function(){$.mobile.loading('hide');clearInterval(interval2);},5000); 
+var interval3 = setInterval(function(){window.location.href='single.html';clearInterval(interval3);}, 3000);
+    
+    
+    
+}});
+},
+
+    
   blog: function(page){
     function getBlogs() {
      var dfd = $.Deferred();
@@ -65,9 +107,19 @@ var app = {
           var source = $("#blog-template").html();
           var template = Handlebars.compile(source);
           var blogData = template(data);
-          $('#blog-data').html(blogData);
-          $('#blog-data').trigger('create');
+          //  $('#list').append("<li>"+ data.title + "<li>");
+            
+        $('#all-posts').html(blogData);
+            
+        $('#all-posts').listview('refresh');
+        //    $('#list').listview('refresh');
+            $('#blog-data').listview().listview('refresh');
+           //// $('#blog-data').listview('refresh');
+           $("ul:jqmData(role='listview')").listview("refresh");
+            $('#all-posts').trigger('create');
+  $('#all-posts').listview('refresh');
           dfd.resolve(data);
+            
           // var source = $("#blog-template").html();
           // var template = Handlebars.compile(source);
           // var blogData = template(data);
@@ -80,10 +132,14 @@ var app = {
         }
       });
       return dfd.promise();
+        
     };
     getBlogs().then(function(data){
+         //localStorage.removeItem('postData');
       $('#all-posts').on('click','li', function(e){
+         
         localStorage.setItem('postData', JSON.stringify(data.posts[$(this).index()]));
+          
       });
     });
   },
