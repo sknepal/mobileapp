@@ -16,6 +16,27 @@
 * specific language governing permissions and limitations
 * under the License.
 */
+var title;
+var url;
+this.share = function(name, uri) {
+    if (typeof name === 'undefined' || typeof uri === 'undefined') {window.plugins.socialsharing.share(title, null, null, url); }
+  else { title = name;
+          url = uri;
+        alert(title);
+       }
+    
+
+ return;
+};
+
+Handlebars.registerHelper('share', share);
+//Handlebars.registerHelper("share", function(title, url) {
+//  phoneNumber = phoneNumber.toString();
+//  return "(" + phoneNumber.substr(0,3) + ") " + 
+//    phoneNumber.substr(3,3) + "-" + 
+//    phoneNumber.substr(6,4);
+//});
+
 Handlebars.registerHelper("debug", function(optionalValue) {
   console.log("Current Context");
   console.log("====================");
@@ -56,14 +77,17 @@ var app = {
   },
 commentSubmit: function(name, email, comment, id_of_post){
 $.ajax({
-url: 'http://www.thelacunablog.com/api/respond/submit_comment/?post_id=' + id_of_post + '&name=' + name + '&email=' + encodeURIComponent(email) + '&content=' + comment,
+url: 'http://www.thetaranights.com/api/respond/submit_comment/?post_id=420' + '&name=' + name + '&email=' + encodeURIComponent(email) + '&content=' + comment,
 type: 'GET',
 dataType: 'json',
 success: function(data) {
     // $('#popupComment').html(data);
     // alert(data);
   //   var json = JSON.parse(data);
-                    if(data.status === "success") {
+   var successMessage = data.status;
+    var pending = "pending";
+    
+                    if(0 == successMessage.localeCompare(pending)) {
                        // return '"true"';
                         var intervalSuccess = setInterval(function(){
        $.mobile.loading('show', {
@@ -75,6 +99,8 @@ success: function(data) {
         clearInterval(intervalSuccess);
     },1); 
                     }
+    
+    else {
                     //return "\"" + json.error + "\"";
     var interval = setInterval(function(){
        $.mobile.loading('show', {
@@ -86,11 +112,10 @@ success: function(data) {
         clearInterval(interval);
     },1); 
     
-           
+    }
 var interval2 = setInterval(function(){$.mobile.loading('hide');clearInterval(interval2);},5000); 
 var interval3 = setInterval(function(){window.location.href='single.html';clearInterval(interval3);}, 3000);
-    
-    
+   
     
 }});
 },

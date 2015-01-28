@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <meta charset="utf-8" />
-      <meta name="format-detection" content="telephone=no" />
-      <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-      <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
-      <link rel="stylesheet" type="text/css" href="css/index.css" />
-      <link rel="stylesheet" type="text/css" href="css/style.css" />
-      <script type="text/javascript" src="cordova-2.7.0.js"></script>
-      <script type="text/javascript" src="js/libs/handlebars.js"></script>
-      <script type="text/javascript" src="js/index.js"></script>
-      <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-      <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
-        <script>
-          </script>
+       <meta charset="utf-8" /> 
+          <meta name="format-detection" content="telephone=no" />
+  <meta name="viewport" id="viewport" content="width=device-width, height=device-height,initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+  <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" href="css/jquery.mobile.iscrollview.css" />
+  <link rel="stylesheet" href="css/jquery.mobile.iscrollview-pull.css" />
+  <script type="text/javascript" src="cordova-2.7.0.js"></script>
+  <script type="text/javascript" src="js/libs/handlebars.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+
+  <script src="js/iscroll.js" type="text/javascript"></script>
+
+  <script src="js/jquery.mobile.iscrollview.js" type="text/javascript"></script>
+        <!-- <link rel="stylesheet" href="css/jquery.mobile.iscrollview.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.iscrollview-pull.css" />
+        <script src="js/iscroll.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile.iscrollview.js" type="text/javascript"></script>
+         -->
+
+        <script src="pull.js" type="text/javascript"></script>
+        <script type="text/javascript">  app.initialize();
+       </script>
+
         <title>Single Post</title>
     </head>
     <body>
@@ -49,6 +63,8 @@
         <script id="single-template" type="text/x-handlebars-template">
             <h1>{{{title}}}</h1>
             {{{content}}} 
+            
+            {{share title url}}
             <div data-role="collapsible" data-mini="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-theme="a" data-content-theme="a">
 <!--
                 <h3>Comments</h3>    <div data-role="collapsible" data-mini="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-theme="b" data-content-theme="a">
@@ -82,8 +98,9 @@
                 <hr>
             {{/each}}
                 </div>
+            
                   <div data-role="popup" id="popupComment" class="ui-content">
-<!--	<form action="" onsubmit="">-->
+<form action="" onsubmit="app.commentSubmit(document.getElementById('name').value, document.getElementById('email').value, document.getElementById('comment').value, {{{id}}});$('#popupComment').popup('close');window.href='#two';">
                      <label>Name: </label>
           <input type = "text" id = "name" value = "" pattern=".{3,}" required title="3 characters minimum" size="3"/>
                 <label>Email: </label>
@@ -92,8 +109,9 @@
                  <textarea cols="40" rows="8" pattern=".{20,}" required title="20 characters minimum" id="comment"></textarea> 
         <br />
         
-        <input type="submit" value="Submit now" onclick="app.commentSubmit(document.getElementById('name').value, document.getElementById('email').value, document.getElementById('comment').value, {{{id}}});$('#popupComment').popup('close');" />             
-<!--</form>-->
+        <input type="submit" value="Submit now" onclick="" /> 
+    
+</form>
 </div>
             </div>
        
@@ -105,7 +123,7 @@
     <div class="footer" data-id="footer" data-role="footer" data-tap-toggle="true" data-transition="slide">
         <div data-role="navbar" data-theme="b" data-content-theme="b">
 		<ul>
-			<li><a href="#">Share</a></li>
+			<li><a href="javascript:share()">Share</a></li>
 			<li><a href="#popupComment" data-rel="popup" data-position-to="window">Commment</a></li>
 		
 		</ul>
@@ -115,7 +133,7 @@
 
         <script type="text/javascript">
              
-        
+       // function 
         //var myParam = location.search.split('?=')[1]
             app.single();
         </script>
