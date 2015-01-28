@@ -19,7 +19,7 @@
 var title;
 var url;
 this.share = function(name, uri) {
-    if (typeof name === 'undefined' || typeof uri === 'undefined') {window.plugins.socialsharing.share(title, null, null, url); }
+    if (typeof name === 'undefined' || typeof uri === 'undefined') {window.plugins.socialsharing.share(title, null, null, url); alert(url);}
   else { title = name;
           url = uri;
         alert(title);
@@ -65,6 +65,7 @@ var app = {
   // function, we must explicity call 'app.receivedEvent(...);'
   onDeviceReady: function() {
     app.receivedEvent('deviceready');
+      if (!window.plugins.socialsharing) {alert('sorry not initialized');}
   },
   // Update DOM on a Received Event
   receivedEvent: function(id) {
