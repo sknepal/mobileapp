@@ -112,7 +112,7 @@ success: function(data) {
     
     }
 var interval2 = setInterval(function(){$.mobile.loading('hide');clearInterval(interval2);},5000); 
-var interval3 = setInterval(function(){window.location.href='single.html';clearInterval(interval3);}, 3000);
+//var interval3 = setInterval(function(){window.location.href='single.html';clearInterval(interval3);}, 3000);
    
     
 }});
