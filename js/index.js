@@ -82,7 +82,7 @@ success: function(data) {
     // $('#popupComment').html(data);
     // alert(data);
   //   var json = JSON.parse(data);
-    $('#single-post-page').empty();
+   
    var successMessage = data.status;
     var pending = "pending";
     
