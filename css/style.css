@@ -18,6 +18,41 @@ div.hwrapper { overflow: hidden; width: inherit; }
     -webkit-backface-visibility: hidden;
 }
 */
+/*
+.ui-listview .ui-li-static {
+    display: flex;
+    white-space: normal;
+}
+*/
+
+/*
+.ui-listview.noEllipsis li {
+    text-overflow: inherit;
+    white-space: inherit;
+}
+*/
+
+
+/*
+
+.ui-li-aside {
+    float: right;
+    width: 50%;
+    text-align: right;
+    margin: 1.4em 0px 0px 0px !important;
+    position: absolute;
+    right: 25px; 
+}
+
+.ui-li-heading, .ui-li-desc {
+    width: 90%;
+    text-overflow: ellipsis;
+}
+
+strong { font-style: bold; }
+*/
+
+
 .hwrapper .header {
 	text-align: center;
 	line-height: 55px;

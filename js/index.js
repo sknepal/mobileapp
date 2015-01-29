@@ -27,6 +27,12 @@ this.share = function(name, uri) {
 };
 
 Handlebars.registerHelper('share', share);
+ Handlebars.registerHelper('strip-scripts', function(context) {
+      var html = context;
+      // context variable is the HTML you will pass into the helper
+      // Strip the script tags from the html, and return it as a Handlebars.SafeString
+      return new Handlebars.SafeString(html);
+    });
 //Handlebars.registerHelper("share", function(title, url) {
 //  phoneNumber = phoneNumber.toString();
 //  return "(" + phoneNumber.substr(0,3) + ") " + 
@@ -131,17 +137,28 @@ var interval3 = setInterval(function(){window.location.href='single.html';clearI
           var blogData = template(data);
           //  $('#list').append("<li>"+ data.title + "<li>");
             
+      //  if (localStorage.getItem('postData')) localStorage.remove();
         $('#all-posts').html(blogData);
+            //$('#all-posts').listview('refresh');
             
-        $('#all-posts').listview('refresh');
+          $('#all-posts').trigger('create');
+           // $('#all-posts').enhanceWithin();
+            $('#all-posts').listview('refresh');
+            
+       //
         //    $('#list').listview('refresh');
-            $('#blog-data').listview().listview('refresh');
+         //   $('#blog-data').listview().listview('refresh');
            //// $('#blog-data').listview('refresh');
-           $("ul:jqmData(role='listview')").listview("refresh");
-            $('#all-posts').trigger('create');
-  $('#all-posts').listview('refresh');
+        //   $("ul:jqmData(role='listview')").listview("refresh");
+        //     $("#blog-data ul").listview().listview('refresh');
+          //  $('#all-posts').enhanceWithin();
+  //$('#all-posts').listview('refresh');
+    //        $('#blog-data').listview('refresh');
+      //       $('#blog-data').listview().listview('refresh');
+    //        $('ul').listview('refresh');
+           //  $('#all-posts').listview('refresh');
           dfd.resolve(data);
-            
+           // $("ul").listview();
           // var source = $("#blog-template").html();
           // var template = Handlebars.compile(source);
           // var blogData = template(data);
@@ -158,6 +175,7 @@ var interval3 = setInterval(function(){window.location.href='single.html';clearI
     };
     getBlogs().then(function(data){
          //localStorage.removeItem('postData');
+        
       $('#all-posts').on('click','li', function(e){
          
         localStorage.setItem('postData', JSON.stringify(data.posts[$(this).index()]));
