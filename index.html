@@ -3,7 +3,10 @@
     <head>
         <meta charset="utf-8" /> 
   <meta name="format-detection" content="telephone=no" />
-  <meta name="viewport" id="viewport" content="width=device-width, height=device-height,initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+<!--  <meta name="viewport" id="viewport" content="width=device-width, height=device-height,initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />-->
+<!--        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi" />-->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
   <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css" />
   <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -29,7 +32,11 @@
       
 
         <title>Home</title>
-        <style type="text/css">/*.ui-listview .ui-li-static {
+        <style type="text/css"> li{ 
+        text-overflow: ellipsis;
+    white-space:normal;
+    overflow:hidden;
+        }/*.ui-listview .ui-li-static {
     display: flex;
     white-space: normal;
 }*/
@@ -70,6 +77,8 @@
     <div class="iscroll-pulldown">
     <span class="iscroll-pull-icon"></span><span class="iscroll-pull-label"></span>
   </div>
+       
+   <div id="blog-data">
        <ul data-role="listview" data-inset="true" id="all-posts"> </ul>
 <!--//       $('#all-posts').listview().listview('refresh');-->
        <script id="blog-template" type="text/x-handlebars-template">
@@ -78,7 +87,7 @@
                   <li><a data-transition="slide" href="single.html?{{@index}}">
                       <h3><font style="white-space:normal;">{{{this.title}}}</font></h3>
                       <span class="ui-li-count">{{comments.length}}</span>
-                      <p> <!--[<font style="font-size:small">{{categories.0.title}}</font>] ----> <strong>By: </strong> {{{author.name}}} <strong> On: </strong> {{{date}}} </p>
+<!--                      <p> [<font style="font-size:small">{{categories.0.title}}</font>] -- <strong>By: </strong> {{{author.name}}} <strong> On: </strong> {{{date}}} </p>-->
 <!--                      <p><font style="white-space:normal;">{excerpt}</font></p>-->
 				<p class="ui-li-aside"></p>
 			</a></li>
@@ -96,8 +105,6 @@
           {{/each}}
   
       </script>
-       
-   <div id="blog-data">
      
       </div>
       
