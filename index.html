@@ -32,11 +32,18 @@
       
 
         <title>Home</title>
-        <style type="text/css"> li{ 
-        text-overflow: ellipsis;
-    white-space:normal;
-    overflow:hidden;
-        }/*.ui-listview .ui-li-static {
+        <style type="text/css"> ul li h3 {
+    white-space: normal !important;
+             white-space: pre !important;           /* CSS 2.0 */
+    white-space: pre-wrap !important;      /* CSS 2.1 */
+    white-space: pre-line !important;      /* CSS 3.0 */
+    white-space: -pre-wrap !important;     /* Opera 4-6 */
+    white-space: -o-pre-wrap !important;   /* Opera 7 */
+    white-space: -moz-pre-wrap !important; /* Mozilla */
+    white-space: -hp-pre-wrap !important;  /* HP Printers */
+    word-wrap:break-word;
+    overflow-wrap: break-word;
+}/*.ui-listview .ui-li-static {
     display: flex;
     white-space: normal;
 }*/
@@ -85,7 +92,7 @@
                
           {{#each posts}}
                   <li><a data-transition="slide" href="single.html?{{@index}}">
-                      <h3><font style="white-space:normal;">{{{this.title}}}</font></h3>
+                      <h3><!-- style="white-space:normal;">-->{{{this.title}}}</h3>
                       <span class="ui-li-count">{{comments.length}}</span>
 <!--                      <p> [<font style="font-size:small">{{categories.0.title}}</font>] -- <strong>By: </strong> {{{author.name}}} <strong> On: </strong> {{{date}}} </p>-->
 <!--                      <p><font style="white-space:normal;">{excerpt}</font></p>-->
