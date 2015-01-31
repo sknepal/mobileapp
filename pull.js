@@ -8,11 +8,11 @@ white:false, nomen:false */
 //-------------------------------------------------------
 // Pull-Up and Pull-Down callbacks for "Pull" page
 //-------------------------------------------------------
+var pullDownGeneratedCount = 0;
 (function pullPagePullImplementation($) {
   "use strict";
-  var pullDownGeneratedCount = 0,
-  pullUpGeneratedCount = 0,
-  listSelector = "div.hrwapper div.blog-data ul.ui-listview",
+  
+  var listSelector = "div.hwrapper div.blog-data ul.ui-listview",
   lastItemSelector = listSelector + " > li:last-child";
   var page=2;
   /* For this example, I prepend three rows to the list with the pull-down, and append
@@ -23,39 +23,34 @@ white:false, nomen:false */
   * completed by the user.
   */
   function gotPullDownData(event, data) {
-    var i, newContent = "";
     pullDownGeneratedCount++;
     // for (i=0; i<3; i+=1) {
-    if (page > 1){
-    newContent = app.blog(--page);
+    /*newContent = */
+   app.blog(1);
     // for (i=0; i<12; i+=1) {  // Generate some fake new content
     //   newContent = "<li>" + newContent + "</li>";
     // }
-
-  }
-  $(listSelector).prepend(newContent).listview("refresh");  // Prepend new content and refresh listview
+//  $(listSelector).prepend(newContent).listview("refresh");  // Prepend new content and refresh listview
        
-        $('#all-posts').listview('refresh');
-            
-      $("ul:jqmData(role='listview')").listview("refresh");
+     
   data.iscrollview.refresh();    // Refresh the iscrollview
   }
 
-  function gotPullUpData(event, data) {
-       $('#all-posts').listview('refresh');
-           $("ul:jqmData(role='listview')").listview("refresh");
-      // localStorage.removeItem('postData');
-    var i,
-    iscrollview = data.iscrollview, newContent="";
-    if (pullDownGeneratedCount === 0) app.blog(1);
-    else {
-    newContent = app.blog(++page);
-    }
+//  function gotPullUpData(event, data) {
+//       $('#all-posts').listview('refresh');
+//           $("ul:jqmData(role='listview')").listview("refresh");
+//      // localStorage.removeItem('postData');
+//    var i,
+//    iscrollview = data.iscrollview, newContent="";
+//    if (pullDownGeneratedCount === 0) app.blog(1);
+//    else {
+//    newContent = app.blog(++page);
+//    }
     // for (i=0; i<3; i+=1) {
     //   newContent += "<li>Pullup-generated row " + (++pullUpGeneratedCount) + "</li>";
     // }
    // $(listSelector).append(newContent).listview("refresh");
-  }
+ // }
        
     // The refresh is a bit different for the pull-up, because I want to demonstrate the use
     // of refresh() callbacks. The refresh() function has optional pre and post-refresh callbacks.
@@ -76,6 +71,8 @@ white:false, nomen:false */
     //
     // For demo, we just use timeout to simulate the time required to complete the operation.
     function onPullDown (event, data) {
+         loading();
+        
       setTimeout(function fakeRetrieveDataTimeout() {
         gotPullDownData(event, data);
       },

@@ -33,6 +33,9 @@ Handlebars.registerHelper('share', share);
       // Strip the script tags from the html, and return it as a Handlebars.SafeString
       return new Handlebars.SafeString(html);
     });
+Handlebars.registerHelper("prettifyDate", function(timestamp) {
+    return new Date(timestamp).toDateString()
+});
 //Handlebars.registerHelper("share", function(title, url) {
 //  phoneNumber = phoneNumber.toString();
 //  return "(" + phoneNumber.substr(0,3) + ") " + 
@@ -85,10 +88,6 @@ url: 'http://www.thetaranights.com/api/respond/submit_comment/?post_id=420' + '&
 type: 'GET',
 dataType: 'json',
 success: function(data) {
-    // $('#popupComment').html(data);
-    // alert(data);
-  //   var json = JSON.parse(data);
-   
    var successMessage = data.status;
     var pending = "pending";
     
@@ -128,56 +127,30 @@ var interval3 = setInterval(function(){window.location.href='single.html';clearI
     function getBlogs() {
      var dfd = $.Deferred();
       $.ajax({
-        url: 'http://thelacunablog.com/api/get_recent_posts/?page=' + page + '&count=8',
+        url: 'http://thelacunablog.com/api/get_recent_posts/?page=' + page + '&count=12',
         type: 'GET',
         dataType: 'json',
         success: function(data){
           var source = $("#blog-template").html();
           var template = Handlebars.compile(source);
           var blogData = template(data);
-          //  $('#list').append("<li>"+ data.title + "<li>");
-            
-      //  if (localStorage.getItem('postData')) localStorage.remove();
         $('#all-posts').html(blogData);
-            //$('#all-posts').listview('refresh');
-            
-          $('#all-posts').trigger('create');
-           // $('#all-posts').enhanceWithin();
-            $('#all-posts').listview('refresh');
-            
-       //
-        //    $('#list').listview('refresh');
-         //   $('#blog-data').listview().listview('refresh');
-           //// $('#blog-data').listview('refresh');
-        //   $("ul:jqmData(role='listview')").listview("refresh");
-        //     $("#blog-data ul").listview().listview('refresh');
-          //  $('#all-posts').enhanceWithin();
-  //$('#all-posts').listview('refresh');
-    //        $('#blog-data').listview('refresh');
-      //       $('#blog-data').listview().listview('refresh');
-    //        $('ul').listview('refresh');
-           //  $('#all-posts').listview('refresh');
+        $('#all-posts').trigger('create');
+        $('#all-posts').listview('refresh');
+           doneLoading();
           dfd.resolve(data);
-           // $("ul").listview();
-          // var source = $("#blog-template").html();
-          // var template = Handlebars.compile(source);
-          // var blogData = template(data);
-          // $('#blog-data').html(blogData);
-          // $('#blog-data').trigger('create');
-          // dfd.resolve(data);
         },
         error: function(data){
           console.log(data);
+            doneLoading();
         }
       });
+        
       return dfd.promise();
         
     };
     getBlogs().then(function(data){
-         //localStorage.removeItem('postData');
-        
       $('#all-posts').on('click','li', function(e){
-         
         localStorage.setItem('postData', JSON.stringify(data.posts[$(this).index()]));
           
       });
@@ -189,32 +162,36 @@ var interval3 = setInterval(function(){window.location.href='single.html';clearI
     var template = Handlebars.compile(source);
     var postData = template(JSON.parse(postDataStorage));
     $('#single-data').html(postData);
+     $('#single-data').trigger('create');
+     
 },
 category: function(slug, count){
   function getCategories() {
     var dfd = $.Deferred();
     $.ajax({
-      url: 'http://thelacunablog.com/?json=get_category_posts&slug=' + slug + '&page=' + count,
+      url: 'http://thelacunablog.com/?json=get_category_posts&slug=' + slug + '&page=' + count + '&count=12',
       type: 'GET',
       dataType: 'json',
       success: function(data){
         var source   = $("#blog-template").html();
         var template = Handlebars.compile(source);
         var blogData = template(data);
-        $('#blog-data').html(blogData);
-        $('#blog-data').trigger('create');
-        dfd.resolve(data);
-
+        $('#categoryposts').html(blogData);
+        $('#categoryposts').trigger('create');
+        $('#categoryposts').listview('refresh');
+          doneLoading();
+          dfd.resolve(data);
       },
       error: function(data){
         console.log(data);
+        doneLoading();
       }
     });
     return dfd.promise();
   };
 
   getCategories().then(function(data){
-    $('#all-posts').on('click','li', function(e){
+    $('#categoryposts').on('click','li', function(e){
       localStorage.setItem('postDat', JSON.stringify(data.posts[$(this).index()]));
     });
   });
