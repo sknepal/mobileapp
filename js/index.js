@@ -247,7 +247,7 @@ authsingle: function() {
      $('#single-data').trigger('create');
       $('#single-data').trigger('updatelayout');
       //$('#single-data').iscrollview();
-      //$('#single-data').iscrollview("refresh");
+      $('#blog-content').iscrollview("refresh");
       
       
      // $('#single-data').iscrollview("refresh");
@@ -302,6 +302,7 @@ catsingle: function() {
   var template = Handlebars.compile(source);
   var postDat = template(JSON.parse(postDataStore));
   $('#catsingle-data').html(postDat);
+       $('#blog-content').iscrollview("refresh");
 
 },
 

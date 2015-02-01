@@ -10,8 +10,6 @@
 }
 .hwrapper {
 	background-color: #000;
-  
-  
 }
 
 /*
@@ -153,7 +151,7 @@ overflow-wrap: break-word;
 	height: 12px;
 	border-radius: 50%;
 	position: absolute;
-
+background-color: #FFFFFF;
 	right: 20px;
 }
 .hwrapper .panel.left a:before {

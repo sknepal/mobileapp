@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="format-detection" content="telephone=no" />
-  <meta name="viewport" id="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+  <meta name="viewport" id="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height;" />
           
   <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -49,7 +49,7 @@
         <li class="miscellaneous"><a data-transition="slide" href="javascript:window.location.href='category.html?cat=miscellaneous'" title="Miscellaneous" data-rel="close">Miscellaneous</a></li>
       </ul>
     </div>
-    <div id="blog-content" data-role="content">
+    <div id="blog-content" data-role="content" data-iscroll>
 
       <div id="catsingle-data"></div>
 
@@ -93,7 +93,7 @@
 		
 		</ul>
 	</div> </div>
-    </div>
+    
   <script type="text/javascript">
   app.catsingle();
        $('form').on('submit',function(e) {
@@ -101,5 +101,6 @@
       
 });
 </script>
+      </div>
 </body>
 </html>

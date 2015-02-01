@@ -32,30 +32,31 @@ function showMessage(msg, time){
 
         function prev(){
              
-            if (page>1) {   
-               loading();
-                setTimeout(function(){app.blog(--page);}, 50);
+            if (page>1) {    
+                loading();
+                setTimeout(function(){app.blog(--page);}, 2000);
             }
             else {
                showMessage('No more new posts to show.', 1000);
             }
             
-//        if (pullDownGeneratedCount==0 && page==1) {
-//            loading();
-//            pullDownGeneratedCount++;
-//            setTimeout(function(){app.blog(page);}, 50);}
+        if (pullDownGeneratedCount==0 && page==1) {
+            loading();
+            pullDownGeneratedCount++;
+            setTimeout(function(){app.blog(page);}, 2000);}
         }
+
         
     this.next = function(){
             loading();
-//        if (pullDownGeneratedCount==0 && page==1) {
-//            loading();
-//            pullDownGeneratedCount++;
-//            setTimeout(function(){app.blog(page);}, 50);}
-//    
-//    else {
-        setTimeout(function(){app.blog(++page);}, 50); 
+        if (pullDownGeneratedCount==0 && page==1) {
+            pullDownGeneratedCount++;
+            setTimeout(function(){app.blog(page);}, 2000);}
+    
+    else {
+        setTimeout(function(){app.blog(++page);}, 2000); 
 }
+    }
     
     function prevcat(){
         if (catpage>1) {   
