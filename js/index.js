@@ -246,8 +246,8 @@ authsingle: function() {
     $('#single-data').html(postData);
      $('#single-data').trigger('create');
       $('#single-data').trigger('updatelayout');
-      $('#single-data').iscrollview();
-      $('#single-data').iscrollview("refresh");
+      //$('#single-data').iscrollview();
+      //$('#single-data').iscrollview("refresh");
       
       
      // $('#single-data').iscrollview("refresh");
