@@ -3,7 +3,7 @@
     <head>
     <meta charset="utf-8" /> 
     <meta name="format-detection" content="telephone=no" />
-     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi;" />
+     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
         
   <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -20,11 +20,11 @@
   <script src="js/iscroll.js" type="text/javascript"></script>
   <script src="js/jquery.mobile.iscrollview.js" type="text/javascript"></script>
         <script src="js/custom.js" type="text/javascript"></script>
- 
+
         <title>Single Post</title>
     </head>
     <body>
-      <div class="hwrapper" id="single-post-page" data-role="page">
+      <div class="hwrapper" id="single-post-page" data-role="page" >
         <div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
           <ul>
             <li class="home"><a href="javascript:window.location.href='index.html'" title="Home" data-rel="close">Home</a></li>
@@ -50,7 +50,6 @@
           </ul>
         </div>
     <div id="blog-content" data-role="content">
-
         <div id="single-data"></div>
 
         <script id="single-template" type="text/x-handlebars-template">
@@ -59,7 +58,7 @@
             {{{content}}}
             {{share title url}}
         <div data-role="collapsible" data-mini="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-theme="a" data-content-theme="a">
-            <h3>View {{comments.length}} Comments</h3>
+            <h3>{{comments.length}} Comments</h3>
             {{#each comments}}
                 <h3>{{{name}}}</h3>{{date}}
                 <p>{{{content}}}</p>
@@ -83,6 +82,7 @@
         </script>
 
 </div>
+        
     <div class="footer" data-id="footer" data-role="footer" data-tap-toggle="true" >
         <div data-role="navbar" data-theme="b" data-content-theme="b">
 		<ul>
@@ -95,10 +95,8 @@
         <script type="text/javascript">
             app.single();
             $('form').on('submit',function(e) {
-      e.preventDefault();
-      
-});
-
+      e.preventDefault();  });
         </script>
+          </div>
     </body>
 </html>

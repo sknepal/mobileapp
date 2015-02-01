@@ -11,7 +11,14 @@
 .hwrapper {
 	background-color: #000;
   
+  
 }
+
+/*
+#single-data{
+      white-space: normal !important;
+}
+*/
 /*
 div.hwrapper { overflow: hidden; width: inherit; }
 .ui-page {

@@ -52,10 +52,8 @@
       </ul>
     </div>
     <div data-iscroll="" id="author-content" data-role="content" >
-      <div class="iscroll-pulldown">
-        <span class="iscroll-pull-icon"></span><span class="iscroll-pull-label"></span>
-      </div>
-      <div id="author-data">  <ul data-role="listview" data-inset="true" id="authorslist" > </ul>
+      
+      <div id="author-data">  <ul data-role="listview" data-inset="true" id="authorslist" data-filter="true" > </ul>
       <script id="author-template" type="text/x-handlebars-template">
           {{#each authors}}
            <li><a data-transition="slidedown" href="authorposts.html?authname={{{slug}}}">

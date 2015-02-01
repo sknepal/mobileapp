@@ -209,6 +209,7 @@ authsingle: function() {
           var template = Handlebars.compile(source);
           var blogData = template(data);
         $('#all-posts').html(blogData);
+             $('#all-posts').listview('refresh');
         $('#all-posts').trigger('create');
         $('#all-posts').listview('refresh');
            doneLoading();
@@ -244,6 +245,12 @@ authsingle: function() {
     var postData = template(JSON.parse(postDataStorage));
     $('#single-data').html(postData);
      $('#single-data').trigger('create');
+      $('#single-data').trigger('updatelayout');
+      $('#single-data').iscrollview();
+      $('#single-data').iscrollview("refresh");
+      
+      
+     // $('#single-data').iscrollview("refresh");
      
 },
 category: function(slug, count){
