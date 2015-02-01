@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" /> 
   <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> 
+        <meta name="viewport" id="viewport" content="width=device-width, height=device-height,initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi;" /> 
         
   <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -30,7 +30,26 @@
     loading();
     });
     app.blog(1);
-    
+//  $(document).on("swipeleft", function(event, ui) {
+//$( "#panel-right").panel("open", {display: "push", position: "right"} );
+//});
+//$(document).on("swiperight", function(event, ui) {
+//$( "#panel-left").panel("open", {display: "overlay", position: "left"} );
+//});
+    $( document ).on( "pageinit", "#home-page", function() {
+    $( document ).on( "swipeleft swiperight", "#home-page", function( e ) {
+        // We check if there is no open panel on the page because otherwise
+        // a swipe to close the left panel would also open the right panel (and v.v.).
+        // We do this by checking the data that the framework stores on the page element (panel: open).
+        if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
+            if ( e.type === "swipeleft"  ) {
+                $( "#right-panel" ).panel( "open" );
+            } else if ( e.type === "swiperight" ) {
+                $( "#left-panel" ).panel( "open" );
+            }
+        }
+    });
+});
 
         </script>
 
@@ -49,6 +68,22 @@ overflow-wrap: break-word;
 display: flex;
 white-space: normal;
 }*/
+
+
+	
+/* Swipe works with mouse as well but often causes text selection. */
+#home-page * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+           dl { font-family: "Times New Roman", Times, serif; padding: 1em; }
+dt { font-size: 2em; font-weight: bold; }
+dt span { font-size: .5em; color: #777; margin-left: .5em; }
+dd { font-size: 1.25em; margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px solid #eee; }
+.back-btn { float: right; margin: 0 2em 1em 0; }
 </style>
 
         <title>Home</title>
@@ -58,16 +93,22 @@ white-space: normal;
 
     <div class="hwrapper" id="home-page" data-role="page">
         
-     
-        
       <div class="header" data-role="header">
-        <span class="open left"><a href="#panel-left">&#61641;</a></span>
+        <span class="open left"><a href="#left-panel">&#61641;</a></span>
         <span class="title">TheLacunaBlog</span>
-        <span class="open right"><a href="#panel-right">&#9776;</a></span>    
+        <span class="open right"><a href="#right-panel">&#9776;</a></span>    
     </div>
               
     <!-- /#header -->
-          <div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
+      
+        
+ 
+  <div data-iscroll="" id="blog-content" data-role="content">
+       <div class="iscroll-pulldown">
+    <span class="iscroll-pull-icon"></span><span class="iscroll-pull-label"></span>
+  </div>
+     
+          <div class="panel left" data-role="panel" data-position="left" data-display="overlay" id="left-panel">
         <ul>
           <li class="home"><a href="javascript:window.location.href='index.html'" title="Home" data-rel="close">Home</a></li>
           <li class="blog"><a href="#" title="Blog" data-rel="close" >Pages</a></li>
@@ -76,15 +117,8 @@ white-space: normal;
           <li class="report"><a href="#" title="Report" data-rel="close">Report Bug</a></li>
         </ul>
       </div>
-        
- 
-  <div data-iscroll="" id="blog-content" data-role="content">
-    <div class="iscroll-pulldown">
-    <span class="iscroll-pull-icon"></span><span class="iscroll-pull-label"></span>
-  </div>
-     
-<div class="panel right" data-role="panel" data-position="right" data-display="overlay" id="panel-right">
-      <ul>
+   
+<div class="panel right" data-role="panel" data-position="right" data-display="overlay" id="right-panel">
         <li class="how-tos"><a href="javascript:window.location.href='category.html?cat=how-tos'" title="How Tos" data-rel="close">How Tos</a></li>
         <li class="freebies"><a href="javascript:window.location.href='category.html?cat=freebies'" title="Freebies" data-rel="close" >Freebies</a></li>
         <li class="useful-tools"><a href="javascript:window.location.href='category.html?cat=useful-tools'" title="Useful Tools" data-rel="close">Useful Tools</a></li>
