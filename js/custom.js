@@ -18,30 +18,43 @@ function doneLoading(){
 }
     
  
+function showMessage(msg, time){
+     $.mobile.loading('show', {
+                theme: "b",
+                text: msg,
+                textonly: true,
+                textVisible: true
+            });   
+              
+          setTimeout(function(){$.mobile.loading('hide');}, time);
+}
+
+
         function prev(){
-            $("#placeholder").fadeOut();
              
             if (page>1) {   
                loading();
                 setTimeout(function(){app.blog(--page);}, 50);
             }
+            else {
+               showMessage('No more new posts to show.', 1000);
+            }
             
-        if (pullDownGeneratedCount==0 && page==1) {
-            loading();
-            pullDownGeneratedCount++;
-            setTimeout(function(){app.blog(page);}, 50);}
+//        if (pullDownGeneratedCount==0 && page==1) {
+//            loading();
+//            pullDownGeneratedCount++;
+//            setTimeout(function(){app.blog(page);}, 50);}
         }
         
     this.next = function(){
-            $("#placeholder").fadeOut()
             loading();
-        if (pullDownGeneratedCount==0 && page==1) {
-            loading();
-            pullDownGeneratedCount++;
-            setTimeout(function(){app.blog(page);}, 50);}
-    
-    else {
-        setTimeout(function(){app.blog(++page);}, 50); }
+//        if (pullDownGeneratedCount==0 && page==1) {
+//            loading();
+//            pullDownGeneratedCount++;
+//            setTimeout(function(){app.blog(page);}, 50);}
+//    
+//    else {
+        setTimeout(function(){app.blog(++page);}, 50); 
 }
     
     function prevcat(){
@@ -49,9 +62,27 @@ function doneLoading(){
            loading();
            setTimeout(function(){app.category(urlParams["cat"], --catpage);}, 50);    
     }
+        else {
+               showMessage('No more new posts to show.', 1000);
+            }
     }
         
     function nextcat(){
         loading();
         setTimeout(function(){app.category(urlParams["cat"], ++catpage);}, 50);
     }
+
+
+function handleError(xhr, textStatus, errorThrown){
+         
+            var errorMessage = setInterval(function(){
+       $.mobile.loading('show', {
+    theme: "b",
+    text: 'Error' + ": " + errorThrown + " Please try again later.",
+    textonly: true,
+    textVisible: true
+});
+        clearInterval(errorMessage);
+    },1); 
+    var clearErrorMessage = setInterval(function(){$.mobile.loading('hide');clearInterval(clearErrorMessage);},3000); 
+}

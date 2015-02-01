@@ -90,47 +90,121 @@ dataType: 'json',
 success: function(data) {
    var successMessage = data.status;
     var pending = "pending";
-    
-                    if(0 == successMessage.localeCompare(pending)) {
-                       // return '"true"';
-                        var intervalSuccess = setInterval(function(){
-       $.mobile.loading('show', {
-    theme: "b",
-    text: "Your comment has been submitted. The author may still need to approve it before it appears.",
-    textonly: true,
-    textVisible: true
-});
-        clearInterval(intervalSuccess);
-    },1); 
-                    }
+    if(0 == successMessage.localeCompare(pending)) {
+        var intervalSuccess = setInterval(function(){
+                $.mobile.loading('show', {
+                theme: "b",
+                text: "Your comment has been submitted. The author may still need to approve it before it appears.",
+                textonly: true,
+                textVisible: true
+                });clearInterval(intervalSuccess);},1);
+        $("form").trigger('reset');
+        $('#popupComment').popup('close');
+    }
     
     else {
-                    //return "\"" + json.error + "\"";
-    var interval = setInterval(function(){
-       $.mobile.loading('show', {
-    theme: "b",
-    text: "Error: " + data.error,
-    textonly: true,
-    textVisible: true
-});
-        clearInterval(interval);
-    },1); 
-    
+        var intervalError = setInterval(function(){
+                $.mobile.loading('show', {
+                theme: "b",
+                text: "Error: " + data.error,
+                textonly: true,
+                textVisible: true
+                });clearInterval(intervalError);},1); 
     }
-var interval2 = setInterval(function(){$.mobile.loading('hide');clearInterval(interval2);},5000); 
-var interval3 = setInterval(function(){window.location.href='single.html';clearInterval(interval3);}, 3000);
-}});
+    
+    doneLoading();
+    var doneCommentMessage = setInterval(function(){$.mobile.loading('hide');clearInterval(doneCommentMessage);},2500); 
+    
+    // var interval3 = setInterval(function(){ window.location.href='single.html';clearInterval(interval3);}, 3000);
 },
 
+      error: function(xhr, textStatus, errorThrown) {
+    // Handle error
+          doneLoading();
+          if (errorThrown == 'Conflict') { errorThrown = 'A similar comment has already been submitted.';}
+          handleError(xhr, textStatus, errorThrown);
+          $("form").trigger('reset');
+          $('#popupComment').popup('close');
+  }
+
+});
+},
     
-  blog: function(page){
-    function getBlogs() {
+  
+authors: function(){
+    $.ajax({
+      url: 'http://thelacunablog.com/api/get_author_index',
+      type: 'GET',
+      dataType: 'json',
+      success: function(data){
+        var source = $("#author-template").html();
+        var template = Handlebars.compile(source);
+        var authorData = template(data);
+        $('#authorslist').html(authorData);
+        $('#authorslist').trigger('create');
+        $('#authorslist').listview('refresh');
+      },
+      error: function(data){
+        console.log(data);
+      }
+    });
+  }
+,
+
+authorposts: function(authorname){
+    function getauthorBlogs() {
      var dfd = $.Deferred();
       $.ajax({
-        url: 'http://thelacunablog.com/api/get_recent_posts/?page=' + page + '&count=12',
+        url: 'http:thelacunablog.com/?json=get_author_posts&slug=' + authorname,
         type: 'GET',
         dataType: 'json',
         success: function(data){
+          var source = $("#authorpost-template").html();
+          var template = Handlebars.compile(source);
+          var authorpostsData = template(data);
+          $('#authorpost-data').html(authorpostsData);
+          $('#authorpost-data').trigger('create');
+          $('#all-posts').listview('refresh');
+          dfd.resolve(data);
+          // var source = $("#blog-template").html();
+          // var template = Handlebars.compile(source);
+          // var blogData = template(data);
+          // $('#blog-data').html(blogData);
+          // $('#blog-data').trigger('create');
+          // dfd.resolve(data);
+        },
+        error: function(data){
+          console.log(data);
+        }
+      });
+      return dfd.promise();
+    };
+    getauthorBlogs().then(function(data){
+      $('#all-posts').on('click','li', function(e){
+        localStorage.setItem('authorblogData', JSON.stringify(data.posts[$(this).index()]));
+      });
+    });
+  },
+
+authsingle: function() {
+
+  var postDataStore = localStorage.getItem('authorblogData');
+  var source   = $("#authsingle-template").html();
+  var template = Handlebars.compile(source);
+  var authorpostDat = template(JSON.parse(postDataStore));
+  $('#authsingle-data').html(authorpostDat);
+
+},  
+    
+  blog: function(pagecount){
+    function getBlogs() {
+     var dfd = $.Deferred();
+      $.ajax({
+        url: 'http://thelacunablog.com/api/get_recent_posts/?page=' + pagecount + '&count=12',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data){
+        if (data.count != '0') {
           var source = $("#blog-template").html();
           var template = Handlebars.compile(source);
           var blogData = template(data);
@@ -139,10 +213,17 @@ var interval3 = setInterval(function(){window.location.href='single.html';clearI
         $('#all-posts').listview('refresh');
            doneLoading();
           dfd.resolve(data);
+        }
+            else {    
+               doneLoading();
+              showMessage('No more posts. Loading latest posts...', 2500);
+              setTimeout(function(){loading(); page = pagecount = 1; app.blog(pagecount);}, 3000);
+          } 
+                
         },
-        error: function(data){
-          console.log(data);
-            doneLoading();
+        error: function(xhr, textStatus, errorThrown) {
+                doneLoading();
+                handleError(xhr, textStatus, errorThrown);
         }
       });
         
@@ -168,11 +249,14 @@ var interval3 = setInterval(function(){window.location.href='single.html';clearI
 category: function(slug, count){
   function getCategories() {
     var dfd = $.Deferred();
+       var interval4;
     $.ajax({
       url: 'http://thelacunablog.com/?json=get_category_posts&slug=' + slug + '&page=' + count + '&count=12',
       type: 'GET',
       dataType: 'json',
       success: function(data){
+          
+           if (data.count != '0') {
         var source   = $("#blog-template").html();
         var template = Handlebars.compile(source);
         var blogData = template(data);
@@ -181,10 +265,16 @@ category: function(slug, count){
         $('#categoryposts').listview('refresh');
           doneLoading();
           dfd.resolve(data);
+           }
+          else { 
+              doneLoading();
+              showMessage('No more posts. Loading latest posts...', 2500);
+            setTimeout(function(){loading();  catpage = count = 1;app.category(slug, count);}, 3000);
+          }    
       },
       error: function(data){
-        console.log(data);
         doneLoading();
+        handleError(xhr, textStatus, errorThrown);
       }
     });
     return dfd.promise();
@@ -221,7 +311,8 @@ catsingle: function() {
         $('#portfolio-data').trigger('create');
       },
       error: function(data){
-        console.log(data);
+        doneLoading();
+        handleError(xhr, textStatus, errorThrown);
       }
     });
   }
