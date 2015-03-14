@@ -27,11 +27,11 @@
       <div class="hwrapper" id="single-post-page" data-role="page" >
         <div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
           <ul>
-            <li class="home"><a href="javascript:window.location.href='index.html'" title="Home" data-rel="close">Home</a></li>
-            <li class="blog"><a href="blog.html" title="Blog" data-rel="close" >Blog</a></li>
-            <li class="mywork"><a href="portfolio.html" title="My Work" data-rel="close">My Work</a></li>
-            <li class="contact"><a href="contact.html" title="Contact" data-rel="close">Contact</a></li>
-            <li class="report"><a href="#" title="Report" data-rel="close">Report Bug</a></li>
+            <li class="home"><a href="javascript:window.location.href='index.html'" title="Home" data-rel="close" in-app="true">Home</a></li>
+            <li class="blog"><a href="blog.html" title="Blog" data-rel="close" in-app="true" >Blog</a></li>
+            <li class="mywork"><a href="portfolio.html" title="My Work" data-rel="close" in-app="true">My Work</a></li>
+            <li class="contact"><a href="contact.html" title="Contact" data-rel="close" in-app="true">Contact</a></li>
+            <li class="report"><a href="#" title="Report" data-rel="close" in-app="true">Report Bug</a></li>
           </ul>
         </div>
         <div class="header" data-role="header">
@@ -42,11 +42,11 @@
         <div class="panel right" data-role="panel" data-position="right" data-display="overlay" id="panel-right">
 
           <ul>
-            <li class="how-tos"><a href="javascript:window.location.href='category.html?cat=how-tos'" title="How Tos" data-rel="close">How Tos</a></li>
-            <li class="freebies"><a href="javascript:window.location.href='category.html?cat=freebies'" title="Freebies" data-rel="close" >Freebies</a></li>
-            <li class="useful-tools"><a href="javascript:window.location.href='category.html?cat=useful-tools'" title="Useful Tools" data-rel="close">Useful Tools</a></li>
-            <li class="blogging"><a href="javascript:window.location.href='category.html?cat=blogging'" title="Blogging" data-rel="close">Blogging</a></li>
-            <li class="miscellaneous"><a href="javascript:window.location.href='category.html?cat=miscellaneous'" title="Miscellaneous" data-rel="close">Miscellaneous</a></li>
+            <li class="how-tos"><a href="javascript:window.location.href='category.html?cat=how-tos'" title="How Tos" data-rel="close" in-app="true">How Tos</a></li>
+            <li class="freebies"><a href="javascript:window.location.href='category.html?cat=freebies'" title="Freebies" data-rel="close" in-app="true" >Freebies</a></li>
+            <li class="useful-tools"><a href="javascript:window.location.href='category.html?cat=useful-tools'" title="Useful Tools" data-rel="close" in-app="true">Useful Tools</a></li>
+            <li class="blogging"><a href="javascript:window.location.href='category.html?cat=blogging'" title="Blogging" data-rel="close" in-app="true">Blogging</a></li>
+            <li class="miscellaneous"><a href="javascript:window.location.href='category.html?cat=miscellaneous'" title="Miscellaneous" data-rel="close" in-app="true">Miscellaneous</a></li>
           </ul>
         </div>
     <div id="blog-content" data-role="content" data-iscroll>
@@ -86,20 +86,20 @@
     <div class="footer" data-id="footer" data-role="footer" data-tap-toggle="false"  data-transition="slidedown">
         <div data-role="navbar" data-theme="b" data-content-theme="b">
 		<ul>
-			<li><a href="javascript:share()" data-transition="slidedown" share="share">Share</a></li>
-			<li><a href="#popupComment" data-rel="popup" data-position-to="window" data-transition="slidedown">Comment</a></li>
+			<li><a href="javascript:share()" data-transition="pop" in-app="true">Share</a></li>
+			<li><a href="#popupComment" data-rel="popup" data-position-to="window" data-transition="pop" in-app="true">Comment</a></li>
 		
 		</ul>
 	</div> </div>
 
         <script type="text/javascript">
+              var href = ["#panel-left", "#panel-right", "#"];
             app.single();
             $('form').on('submit',function(e) {
       e.preventDefault();  });
             
-
   $('a').click(function(e){
-   if (!($(e.currentTarget).attr('href') == '#panel-left' || $(e.currentTarget).attr('href') == '#panel-right' || $(e.currentTarget).attr('href') == '#popupComment' || $(e.currentTarget).attr('share') == 'share' || $(e.currentTarget).attr('href') == '#' || $(e.currentTarget).attr('data-rel') == 'close')) {
+        if (!( $.inArray($(e.currentTarget).attr('href'), href) != -1  || $(e.currentTarget).attr('in-app') == 'true')) {
     e.preventDefault();
        console.log("second");
     window.open($(e.currentTarget).attr('href'), '_system', '');
