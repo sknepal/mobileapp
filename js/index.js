@@ -301,7 +301,10 @@ catsingle: function() {
   var template = Handlebars.compile(source);
   var postDat = template(JSON.parse(postDataStore));
   $('#catsingle-data').html(postDat);
-       $('#blog-content').iscrollview("refresh");
+     $('#catsingle-data').trigger('create');
+      $('#catsingle-data').trigger('updatelayout');
+      //$('#single-data').iscrollview();
+      $('#blog-content').iscrollview("refresh");
 
 },
 
