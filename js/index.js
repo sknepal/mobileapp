@@ -89,8 +89,7 @@ type: 'GET',
 dataType: 'json',
 success: function(data) {
    var successMessage = data.status;
-    var pending = "pending";
-    if(0 == successMessage.localeCompare(pending)) {
+    if(0 == successMessage.localeCompare("pending") || 0 == successMessage.localeCompare("ok")) {
         var intervalSuccess = setInterval(function(){
                 $.mobile.loading('show', {
                 theme: "b",
