@@ -102,7 +102,7 @@
             
 
   $('a').click(function(e){
-   if (!($(e.currentTarget).attr('href') == '#panel-left' || $(e.currentTarget).attr('href') == '#panel-right' || $(e.currentTarget).attr('href') == '#popupComment' || $(e.currentTarget).attr('share') == 'share' || $(e.currentTarget).attr('href') == '#')) {
+   if (!($(e.currentTarget).attr('href') == '#panel-left' || $(e.currentTarget).attr('href') == '#panel-right' || $(e.currentTarget).attr('href') == '#popupComment' || $(e.currentTarget).attr('share') == 'share' || $(e.currentTarget).attr('href') == '#') || $(e.currentTarget).attr('data-rel') == 'close') {
     e.preventDefault();
        console.log("second");
     window.open($(e.currentTarget).attr('href'), '_system', '');
