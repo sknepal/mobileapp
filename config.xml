@@ -61,6 +61,8 @@ permission on your app, which PhoneGap requires.
 <icon src="res/icon/cordova_48.png" gap:platform="winphone" />
 <icon src="res/icon/cordova_173.png" gap:platform="winphone" gap:role="background" />
 <!-- Define app splash screen for each platform. -->
+    <preference name="SplashScreen" value="screen"/>
+    <preference name="SplashScreenDelay" value="10000"/>
 <gap:splash src="res/screen/android_ldpi_portrait.png.png" gap:platform="android" gap:qualifier="port-ldpi" />
 <gap:splash src="res/screen/android_mdpi_portrait.png" gap:platform="android" gap:qualifier="port-mdpi" />
 <gap:splash src="res/screen/android_hdpi_portrait.png" gap:platform="android" gap:qualifier="port-hdpi" />
