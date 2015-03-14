@@ -243,7 +243,7 @@ authsingle: function() {
     var template = Handlebars.compile(source);
     var postData = template(JSON.parse(postDataStorage));
     $('#single-data').html(postData);
- /* $('#single-data').trigger('create');*/
+  $('#single-data').trigger('create');
 /*      $('#single-data').trigger('updatelayout');
       //$('#single-data').iscrollview();*/
       $('#blog-content').iscrollview("refresh");

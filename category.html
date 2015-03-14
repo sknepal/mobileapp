@@ -78,7 +78,7 @@
       <div id="blog-data">  <ul data-role="listview" data-inset="true" id="categoryposts" > </ul>
       <script id="blog-template" type="text/x-handlebars-template">
           {{#each posts}}
-           <li><a data-transition="slidedown" href="catsingle.html?{{@index}}" in-app="true">
+           <li><a data-transition="flip" href="catsingle.html?{{@index}}" in-app="true">
                       <h3>{{{this.title}}}</h3>
                       <span class="ui-li-count">{{comments.length}}</span> 
                       <p style="white-space:normal">  Author: {{{author.name}}}</p>
