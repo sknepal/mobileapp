@@ -27,7 +27,7 @@
       <div class="hwrapper" id="single-post-page" data-role="page" >
         <div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
           <ul>
-            <li class="home"><a href="javascript:window.location.href='index.html'" title="Home" data-rel="close" in-app="true">Home</a></li>
+            <li class="home"><a href="index.html" title="Home" data-rel="close" in-app="true">Home</a></li>
             <li class="blog"><a href="blog.html" title="Blog" data-rel="close" in-app="true" >Blog</a></li>
             <li class="mywork"><a href="portfolio.html" title="My Work" data-rel="close" in-app="true">My Work</a></li>
             <li class="contact"><a href="contact.html" title="Contact" data-rel="close" in-app="true">Contact</a></li>
@@ -93,15 +93,14 @@
 	</div> </div>
 
         <script type="text/javascript">
-              var href = ["#panel-left", "#panel-right", "#"];
             app.single();
             $('form').on('submit',function(e) {
       e.preventDefault();  });
             
   $('a').click(function(e){
+              var href = ["#panel-left", "#panel-right", "#"];
         if (!( $.inArray($(e.currentTarget).attr('href'), href) != -1  || $(e.currentTarget).attr('in-app') == 'true')) {
     e.preventDefault();
-       console.log("second");
     window.open($(e.currentTarget).attr('href'), '_system', '');
    }
 });
