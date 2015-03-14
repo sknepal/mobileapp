@@ -243,9 +243,9 @@ authsingle: function() {
     var template = Handlebars.compile(source);
     var postData = template(JSON.parse(postDataStorage));
     $('#single-data').html(postData);
-     $('#single-data').trigger('create');
-      $('#single-data').trigger('updatelayout');
-      //$('#single-data').iscrollview();
+ /* $('#single-data').trigger('create');*/
+/*      $('#single-data').trigger('updatelayout');
+      //$('#single-data').iscrollview();*/
       $('#blog-content').iscrollview("refresh");
       
       
@@ -302,9 +302,7 @@ catsingle: function() {
   var postDat = template(JSON.parse(postDataStore));
   $('#catsingle-data').html(postDat);
      $('#catsingle-data').trigger('create');
-      $('#catsingle-data').trigger('updatelayout');
-      //$('#single-data').iscrollview();
-      $('#blog-content').iscrollview("refresh");
+       $('#blog-content').iscrollview("refresh");
 
 },
 
