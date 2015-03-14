@@ -71,7 +71,7 @@ var app = {
   // function, we must explicity call 'app.receivedEvent(...);'
   onDeviceReady: function() {
          app.receivedEvent('deviceready');
-     navigator.splashscreen.show();
+    // navigator.splashscreen.show();
 
      // if (!window.plugins.socialsharing) {alert('sorry not initialized');}
   },
