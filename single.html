@@ -100,57 +100,13 @@
             $('form').on('submit',function(e) {
       e.preventDefault();  });
             
-      
-//                $(document).on('click', 'a', function(e){
-//                    if $(e.currentTarget).attr('title') {
-//                    } else {
-//                e.preventDefault;
-//                window.open($(e.currentTarget).attr('href'), '_system', '');
-//                    }
-//    });             
-//
+
   $('a').click(function(e){
-//      //  var attr = $(e.currentTarget).attr('title');
-////        if $(e.currentTarget).attr('title') {
-////        }else{
-////        
-////        if (typeof attr == typeof undefined || attr !== false) {
-////        $("a[href='#panel-left']").click(function(d){
-////            return ;
-////        });
-//    //    alert($(this).attr('href'));
-//        alert(e.attr('href'));
-      //alert(e.data('share'));
-     /*if ($('#a').attr('share') !== undefined) {
-    // attribute exists
-         console.log("yes");
-} else {
-    console.log("no");
-    // attribute does not exist
-}*/
-     // console.log($(e.currentTarget).attr('share'));
-    // alert($(e.currentTarget).attr('href'));
-    //  alert($(e.hasAttr('share')));
-   if ($(e.currentTarget).attr('href') == '#panel-left' || $(e.currentTarget).attr('href') == '#panel-right' || $(e.currentTarget).attr('href') == '#popupComment' || $(e.currentTarget).attr('share') == 'share' || $(e.currentTarget).attr('href') == '#') {
-    //window.open($(e.currentTarget).attr('href'), '_self', '');
-   }else{
+   if (!($(e.currentTarget).attr('href') == '#panel-left' || $(e.currentTarget).attr('href') == '#panel-right' || $(e.currentTarget).attr('href') == '#popupComment' || $(e.currentTarget).attr('share') == 'share' || $(e.currentTarget).attr('href') == '#')) {
     e.preventDefault();
+       console.log("second");
     window.open($(e.currentTarget).attr('href'), '_system', '');
    }
-////}  
-////        }
-//        });
-            
-            
-//            $(document).ready(function(){
-//  $('.links').click(function(e){
-//    var href = $(this).attr("href");
-//   // var target = $(this).attr("target");
-//if (href=='#panel-left') return false;
-//       e.preventDefault();
-//     window.open($(e.currentTarget).attr('href'), '_system', '');
-//
-//  });
 });
         </script>
           </div>
