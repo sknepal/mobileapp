@@ -120,7 +120,18 @@
 ////        });
 //    //    alert($(this).attr('href'));
 //        alert(e.attr('href'));
-   if ($(e.currentTarget).attr('href') == '#panel-left' || $(e.currentTarget).attr('href') == '#panel-right' || $(e.currentTarget).attr('href') == '#popupComment' || $(e.hasAttribute('share')) ){
+      //alert(e.data('share'));
+     /*if ($('#a').attr('share') !== undefined) {
+    // attribute exists
+         console.log("yes");
+} else {
+    console.log("no");
+    // attribute does not exist
+}*/
+     // console.log($(e.currentTarget).attr('share'));
+    // alert($(e.currentTarget).attr('href'));
+    //  alert($(e.hasAttr('share')));
+   if ($(e.currentTarget).attr('href') == '#panel-left' || $(e.currentTarget).attr('href') == '#panel-right' || $(e.currentTarget).attr('href') == '#popupComment' || $(e.currentTarget).attr('share') == 'share'){
     //window.open($(e.currentTarget).attr('href'), '_self', '');
    }else{
     e.preventDefault();
