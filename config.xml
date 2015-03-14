@@ -42,6 +42,10 @@ permission on your app, which PhoneGap requires.
 <gap:plugin name="com.phonegap.plugins.barcodescanner" />
 -->
     <gap:plugin name="nl.x-services.plugins.socialsharing" source="plugins.cordova.io" />
+<<<<<<< HEAD
+    <gap:plugin name="org.apache.cordova.inappbrowser" />
+=======
+>>>>>>> 345e8bdd7e4eb1605488515d0a97462094019f13
 <!-- Define app icon for each platform. -->
 <icon src="icon.png" />
 <icon src="res/icon/android/icon-36-ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
