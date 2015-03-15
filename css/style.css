@@ -146,13 +146,16 @@ overflow-wrap: break-word;
 }
 .hwrapper .panel.right a:before {
 	content: '';
-	display: block;
+	display: inline-block;
 	width: 12px;
 	height: 12px;
 	border-radius: 50%;
 	position: absolute;
-background-color: #FFFFFF;
-	right: 20px;
+/*background-color: #FFFFFF;*/
+    font-family: 'hk-demo';
+	text-align: center;
+	font-size: 18px;
+	left: 20px;
 }
 .hwrapper .panel.left a:before {
 	content: '';
@@ -167,21 +170,54 @@ background-color: #FFFFFF;
 	font-size: 18px;
 }
 .hwrapper .panel.left .home a:before {
-	content: '\f09e';
+	content: '\e806';
 }
-.hwrapper .panel.left .blog a:before {
-	content: '👤';
+.hwrapper .panel.left .authors a:before {
+	content: '\e800';
 }
-.hwrapper .panel.left .mywork a:before {
-	content: '\2699';
+.hwrapper .panel.left .aboutus a:before {
+	content: '\e813';
 }
 .hwrapper .panel.left .contact a:before {
-	content: '\e78e';
+	content: '\e804';
 }
-.hwrapper .panel.left .report a:before {
-	content: '\f0e0';
+.hwrapper .panel.left .search a:before {
+	content: '\e81a';
+}
+/*.hwrapper .panel.left .report a:before {
+	content: '\f1e0' ;
+}*/
+
+.hwrapper .panel.right .freebies a:before {
+	content: '\e818';
 }
 
+.hwrapper .panel.right .how-tos a:before {
+	content: '\e810' ;
+}
+.hwrapper .panel.right .blogging a:before {
+	content: '\e815' ;
+}
+.hwrapper .panel.right .useful-tools a:before {
+	content: '\e811' ;
+}
+.hwrapper .panel.right .miscellaneous a:before {
+	content: '\e819' ;
+}
+
+.ui-page .ui-content .ui-listview {
+    margin-right : 20px;
+    margin-left  : 20px;
+}
+.ui-page .ui-content .ui-filterable {
+    margin-right : 20px;
+    margin-left  : 20px;
+}
+
+.wrapper, .wrapper div.iscroll-scroller {
+    width: 100% !important;
+}
+/*'\f0e0'
 /*
 
 .hwrapper .footer {

@@ -9,12 +9,13 @@ white:false, nomen:false */
 // Pull-Up and Pull-Down callbacks for "Pull" page
 //-------------------------------------------------------
 var pullDownGeneratedCount = 0;
+var where;
 (function pullPagePullImplementation($) {
   "use strict";
   
   var listSelector = "div.hwrapper div.blog-data ul.ui-listview",
   lastItemSelector = listSelector + " > li:last-child";
-  var page=2;
+ // var page=2;
   /* For this example, I prepend three rows to the list with the pull-down, and append
   * 3 rows to the list with the pull-up. This is only to make a clear illustration that the
   * action has been performed. A pull-down or pull-up might prepend, append, replace or modify
@@ -23,10 +24,14 @@ var pullDownGeneratedCount = 0;
   * completed by the user.
   */
   function gotPullDownData(event, data) {
+      page=1;
     pullDownGeneratedCount++;
     // for (i=0; i<3; i+=1) {
     /*newContent = */
-   app.blog(1);
+    if (where == "blog") { app.get(where, 1); }
+      else if (where == "category") {  app.get("category", 1, urlParams["cat"]); }
+
+     
     // for (i=0; i<12; i+=1) {  // Generate some fake new content
     //   newContent = "<li>" + newContent + "</li>";
     // }

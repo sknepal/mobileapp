@@ -12,23 +12,22 @@
   <link rel="stylesheet" href="css/jquery.mobile.iscrollview-pull.css" />
   <script type="text/javascript" src="cordova.js"></script>
   <script type="text/javascript" src="js/libs/handlebars.js"></script>
-     <script src="js/custom.js" type="text/javascript"></script>   
   <script type="text/javascript" src="js/index.js"></script>
   <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
   <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
   <script type="text/javascript" src="js/SocialSharing.js"></script>
   <script src="js/iscroll.js" type="text/javascript"></script>
   <script src="js/jquery.mobile.iscrollview.js" type="text/javascript"></script>
-  <script src="pull.js" type="text/javascript"></script>
-    
+  <script src="pullcat.js" type="text/javascript"></script>
+     <script src="js/custom.js" type="text/javascript"></script>   
     
 
 <script type="text/javascript">$(document).ready(function() {
- page=1;
   // Handler for .ready() called.
     loading();
     });
-    var urlParams;
+     page=1;
+       var urlParams;
 (window.onpopstate = function () {
     
   var match,
@@ -41,11 +40,9 @@
   while (match = search.exec(query))
     urlParams[decode(match[1])] = decode(match[2]);
   })();
-
-   app.get("category", 1, urlParams["cat"]);
-  </script>
-      
-  <title>Category</title>
+   app.get("search", 1, urlParams["search"]);
+    </script>
+  <title>Search Results</title>
 </head>
 <body>
   <div class="hwrapper" data-role="page" id="category-page">
@@ -81,12 +78,9 @@
         <li class="miscellaneous"><a data-transition="slide" href="javascript:window.location.href='category.html?cat=miscellaneous'" title="Miscellaneous" data-rel="close" in-app="true">Miscellaneous</a></li>
       </ul>
     </div>
-    <div id="blog-content" data-role="content" >
+    <div id="searchresults-content" data-role="content" >
+      <div id="searchresults-data" data-iscroll="" class="wrapper">
       
-      <div id="blog-data" data-iscroll="" class="wrapper">
-          <div class="iscroll-pulldown">
-        <span class="iscroll-pull-icon"></span><span class="iscroll-pull-label"></span>
-      </div>
       <script id="blog-template" type="text/x-handlebars-template">
           {{#each posts}}
            <li><a data-transition="flip" href="single.html?{{@index}}" in-app="true">
@@ -98,14 +92,13 @@
 			</a></li>
           {{/each}}
       </script>
-        </div>
-    
+    </div>
     </div>
     <div class="footer" data-id="footer" data-role="footer" data-tap-toggle="false" data-transition="slidedown">
         <div data-role="navbar">
 <ul>
-    <li><a href="javascript:prev('category', urlParams['cat'])" data-icon="arrow-l" in-app="true"></a></li>
-    <li><a href="javascript:next('category', urlParams['cat'])" data-icon="arrow-r" in-app="true"></a></li>
+    <li><a href="javascript:prev('search', urlParams['search'])" data-icon="arrow-l" in-app="true"></a></li>
+    <li><a href="javascript:next('search', urlParams['search'])" data-icon="arrow-r" in-app="true"></a></li>
     </ul>
 	</div></div>
   </div>
