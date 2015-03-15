@@ -206,12 +206,12 @@ overflow-wrap: break-word;
 }
 
 .ui-page .ui-content .ui-listview {
-    margin-right : 20px;
-    margin-left  : 20px;
+    margin-right : 10px;
+    margin-left  : 10px;
 }
 .ui-page .ui-content .ui-filterable {
-    margin-right : 20px;
-    margin-left  : 20px;
+    margin-right : 10px;
+    margin-left  : 10px;
 }
 
 .wrapper, .wrapper div.iscroll-scroller {
