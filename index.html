@@ -84,7 +84,7 @@
   </div>
        <script id="blog-template" type="text/x-handlebars-template">        
           {{#each posts}}
-                  <li><a data-transition="flip" href="single.html?{{@index}}" in-app="true">
+                  <li><a data-transition="slidedown" href="single.html?{{@index}}" in-app="true">
                       <h3>{{{this.title}}}</h3>
                       <span class="ui-li-count">{{comments.length}}</span>
                       <p style="white-space:normal">  Author: {{{author.name}}}</p>
@@ -98,7 +98,7 @@
        </div>  
 
       
-    <div class="footer" data-id="footer" data-role="footer" data-tap-toggle="false" data-transition="slidedown" data-position="fixed">
+    <div class="footer" data-id="footer" data-role="footer" data-tap-toggle="false">
         <div data-role="navbar">
             <ul>
                 <li><a href="javascript:prev('blog')" data-icon="arrow-l" in-app="true"></a></li>

@@ -217,6 +217,10 @@ overflow-wrap: break-word;
 .wrapper, .wrapper div.iscroll-scroller {
     width: 100% !important;
 }
+[data-role=footer]{bottom:0; position:absolute !important; top: auto !important; width:100%;}  
+.ui-page {
+    -webkit-backface-visibility: hidden;
+}
 /*'\f0e0'
 /*
 

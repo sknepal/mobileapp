@@ -220,8 +220,13 @@ var app = {
 
                     $(".wrapper .iscroll-content").append("<ul data-role='listview' data-inset='true' id='all-posts' data-dismissible='false'> </ul>");
                     $(".wrapper").trigger("create");
+                    $('#all-posts').listview('refresh');
                     $('#all-posts').html(resultData);
                     $('#all-posts').listview('refresh');
+                        
+                        $(".wrapper").iscrollview("resizeWrapper");
+                    //$('.wrapper').listview('refresh');
+                        $(".wrapper").iscrollview("refresh");
                     doneLoading();
 
                     dfd.resolve(data);
