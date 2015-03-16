@@ -205,21 +205,28 @@ overflow-wrap: break-word;
 	content: '\e819' ;
 }
 
-.ui-page .ui-content .ui-listview {
+/*.ui-page .ui-content .ui-listview {
     margin-right : 10px;
     margin-left  : 10px;
-}
+}*/
 .ui-page .ui-content .ui-filterable {
     margin-right : 10px;
     margin-left  : 10px;
 }
+ 
 
 .wrapper, .wrapper div.iscroll-scroller {
     width: 100% !important;
+    
+}  
+.ui-listview {
+    margin: 0 !important;
 }
-[data-role=footer]{bottom:0; position:absolute !important; top: auto !important; width:100%;}  
 .ui-page {
     -webkit-backface-visibility: hidden;
+}
+.blog {
+    padding: 0 !important;
 }
 /*'\f0e0'
 /*
