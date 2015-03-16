@@ -18,6 +18,7 @@
  * under the License.
  */
 var title;
+ var searchFound;
 var url;
 this.share = function (name, uri) {
     if (typeof name === 'undefined' || typeof uri === 'undefined') {
@@ -179,10 +180,30 @@ var app = {
         $('#single-data').trigger('create');
 
     },
-    get: function (type, pagecount, arg) {
+      page: function (slug) { 
+        $.ajax({
+            url: 'http://thelacunablog.com/?json=get_page&slug=' + slug,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var source = $("#page-template").html();
+                var template = Handlebars.compile(source);
+                var pageData = template(data);
+                $("#page-data").html(pageData);
+             //   $("#page-data").trigger("create");
+                doneLoading();
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                doneLoading();
+                handleError(xhr, textStatus, errorThrown);
+            }
+        });
+    },
+       get: function (type, pagecount, arg) {
         function getPosts() {
             var jsonRequest;
-            var searchFound;
+           
             var count = 13;
             var jsonURL = "http://thelacunablog.com/?json=";
             if (type == 'category') {
@@ -233,9 +254,16 @@ var app = {
                     }
                     else {
                         doneLoading();
-                        showMessage('No more posts. Loading latest posts instead...', 2500);
-                        setTimeout(function(){ loading(); pagecount = 1; app.get(type, pagecount, arg);}, 3000);
+                        if ((type=='search' && searchFound==true) || type!='search'){
+                        showMessage('There is nothing beyond this that matches your query. Returning to the first page instead.', 3000);
+                        setTimeout(function(){ loading(); page =1; app.get(type, page, arg);}, 3000);
+                        }
+                        else {
+                            searchFound = false;
+                            showMessage('Not found. Please search with a different keyword again.', 1500); 
+                            setTimeout(function(){ $("#popupSearch").popup("open"); }, 2000);   
                     } 
+                    }
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     doneLoading();
@@ -251,4 +279,30 @@ var app = {
             });
         });
     }
-};
+};/*
+
+func: function (type, jsonURL){
+    if (type!='search') { return 1; }
+    else {
+           $.ajax({
+                url: jsonURL,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.count != '0') {
+                        return 1;
+                   // dfd.resolve(data);
+                    }
+                    else {
+                        return 0;
+                    } 
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    doneLoading();
+                    handleError(xhr, textStatus, errorThrown);
+                }
+            });
+        
+    }*/
+    
+

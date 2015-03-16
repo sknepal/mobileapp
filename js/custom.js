@@ -32,10 +32,18 @@ function showMessage(msg, time) {
         $.mobile.loading('hide');
     }, time);
 }
-
+    
+  $('a').click(function(e){
+              var href = ["#panel-left", "#panel-right", "#"];
+        if (!( $.inArray($(e.currentTarget).attr('href'), href) != -1  || $(e.currentTarget).attr('in-app') == 'true')) {
+    e.preventDefault();
+       console.log("second");
+    window.open($(e.currentTarget).attr('href'), '_system', '');
+   }
+});
 
 function prev(where, arg) {
-    if (page <=1) { showMessage('No more new posts to show.', 1000);
+    if (page <=1) { showMessage('You\'re already on the first page.', 1000);
     } else{
         loading();
         setTimeout(function () {
