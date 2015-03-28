@@ -119,7 +119,7 @@ function appReady()
     document.addEventListener('backbutton', function(e){
       var activePage = $.mobile.activePage.attr('id');
             alert(activePage);
-         navigator.app.backHistory();
+        $.mobile.changePage('category.html?cat=how-tos');
      /*   var activePage = $.mobile.activePage.attr('id');
 
         if(activePage == 'menuPage')
