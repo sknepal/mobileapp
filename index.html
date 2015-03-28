@@ -141,27 +141,32 @@
   });    
                 function load() {              
             event.preventDefault();
-            $.mobile.loading('show');       
+            $.mobile.loading('show'); 
+                     var ref = window.open('category.html?cat=blogging', '_self', 'hidden=yes');
             setTimeout(function() {    
-               window.open(('category.html?cat=blogging'), '_self');
+              // window.open(('category.html?cat=blogging'), '_self');
                 //window.location.assign('test.html');
+                ref.show();
             }, 50);
                 }
              
              function loadmore(){
                  event.preventDefault();
             $.mobile.loading('show');       
+             var ref = window.open(('category.html?cat=blogging'), '_self', 'hidden=yes');
+            //    var ref=   window.location.assign('category.html?cat=blogging');
             setTimeout(function() {    
              //  window.open(('category.html?cat=blogging'), '_self');
-                window.location.assign('category.html?cat=blogging');
-            }, 50);
+              ref.show();
+            }, 150);
              }
              
                 function loadevenmore(){
                  event.preventDefault();
-            $.mobile.loading('show');       
+                    $.mobile.loading('show');
+                    var ref = window.open('category.html?cat=blogging', '_blank', 'hidden=yes');
             setTimeout(function() {    
-              window.open(('category.html?cat=blogging'), '_self');
+ref.show();
               //  window.location.assign('category.html?cat=blogging');
             }, 100);
              }
