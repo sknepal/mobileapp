@@ -52,12 +52,13 @@ div.hwrapper { overflow: hidden; width: inherit; }
 }
 
 strong { font-style: bold; }
-*/
+
 .ui-page {
     backface-visibility:hidden;
--webkit-backface-visibility:hidden; /* Chrome and Safari */
--moz-backface-visibility:hidden; /* Firefox */
+-webkit-backface-visibility:hidden; 
+-moz-backface-visibility:hidden;
 }
+*/
 
  ul li h3 {
 white-space: normal !important;
