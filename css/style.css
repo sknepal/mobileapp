@@ -8,9 +8,9 @@
   font-weight: normal;
   font-style: normal;
 }
-.hwrapper {
+/*.hwrapper {
 	background-color: #000;
-}
+}*/
 /*
 #single-data{
       white-space: normal !important;
@@ -52,13 +52,13 @@ div.hwrapper { overflow: hidden; width: inherit; }
 }
 
 strong { font-style: bold; }
-
+*/
 .ui-page {
     backface-visibility:hidden;
 -webkit-backface-visibility:hidden; 
 -moz-backface-visibility:hidden;
 }
-*/
+
 
  ul li h3 {
 white-space: normal !important;
