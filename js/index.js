@@ -158,9 +158,13 @@ var app = {
                 var authorData = template(data);
                 $(".wrapper .iscroll-content").append("<ul data-role='listview' data-inset='true' id='authorslist' data-dismissible='false' data-filter='true' data-filter-placeholder='Search for an author...'> </ul>");
                 $(".wrapper").trigger("create");
+               
                 $("#authorslist").html(authorData);
                 $("#authorslist").listview("refresh");
                 
+                        $(".wrapper").iscrollview("resizeWrapper");
+                    //$('.wrapper').listview('refresh');
+                        $(".wrapper").iscrollview("refresh");
                 doneLoading();
                 dfd.resolve(data);
 
