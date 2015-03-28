@@ -38,10 +38,10 @@
     <div class="hwrapper" id="home-page" data-role="page">
         <div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
         <ul>
-          <li class="home"><a href="navigator.app.loadUrl('file:///android_asset/www/index.html');" title="Home" data-rel="close" in-app="true">Home</a></li>
-          <li class="authors"><a href="navigator.app.loadUrl("file:///android_asset/www/authors.html");" title="Authors" data-rel="close" in-app="true">Authors</a></li>
-          <li class="aboutus"><a href="#" onclick="navigator.app.loadUrl('file:///android_asset/www/page.html?page=about-us')" title="About Us" data-rel="close" in-app="true" data-transition="none">About Us</a></li>
-<li class="contact"><a href="navigator.app.loadUrl('file:///android_asset/www/single.html?#popupContact')" title="Contact" data-rel="popup" data-position-to="window" in-app="true" rel="external">Contact</a></li>
+          <li class="home"><a href="window.open('index.html');" title="Home" data-rel="close" in-app="true">Home</a></li>
+          <li class="authors"><a href="file:///android_asset/www/authors.html" title="Authors" data-rel="close" in-app="true">Authors</a></li>
+          <li class="aboutus"><a href="#" onclick="window.open('file:///android_asset/www/page.html?page=about-us', '_system')" title="About Us" data-rel="close" in-app="true" data-transition="none">About Us</a></li>
+<li class="contact"><a href="window.open('file:///android_asset/www/single.html?#popupContact', '_system')" title="Contact" data-rel="popup" data-position-to="window" in-app="true" rel="external">Contact</a></li>
 <div data-role="popup" id="popupContact" class="ui-content" data-theme="a" >
                 <strong> The Lacuna Blog </strong>
                 <ul>
