@@ -1,4 +1,5 @@
 var page, catpage, where;
+   var urlParams;
 
 function loading() {
     $.mobile.loading('show', {

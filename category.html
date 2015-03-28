@@ -27,12 +27,12 @@
 </head>
 <body onLoad="onLoad()">
   <div class="hwrapper" data-role="page" id="category-page">
-          <script> $("#category-page").on("pageshow",function(event, ui){
+          <script> $(document).one("pageshow",function(event, ui){
  page=1;
   // Handler for .ready() called.
     loading();
           
-    var urlParams;
+ 
 (window.onpopstate = function () {
     
   var match,
