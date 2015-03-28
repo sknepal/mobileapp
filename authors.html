@@ -96,10 +96,9 @@
     </ul>
 	</div>--></div>
       <script>
-          $(document).ready(function() {
-        loading();
-     });
-        app.authors();
+           $("#author-page").on("pageshow",function(event, ui){
+            loading();
+                app.authors();
   $('a').click(function(e){
               var href = ["#panel-left", "#panel-right", "#"];
         if (!( $.inArray($(e.currentTarget).attr('href'), href) != -1  || $(e.currentTarget).attr('in-app') == 'true')) {
@@ -111,6 +110,9 @@
       $("#panel-left").on("click", function () {
    $("#panel-left").panel("close");
   });   
+        });
+       
+       
           </script>
   </div>
     
