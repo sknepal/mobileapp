@@ -27,26 +27,16 @@
       <div class="hwrapper" id="single-post-page" data-role="page" >
         <div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
           <ul>
-            <li class="home"><a href="javascript:window.location.href='index.html'" title="Home" data-rel="close" in-app="true">Home</a></li>     <li class="authors"><a href="javascript:window.location.href='authors.html'" title="Authors" data-rel="close" in-app="true">Authors</a></li>
-          <li class="aboutus"><a href="javascript:window.location.href='page.html?page=about-us'" title="About Us" data-rel="close" in-app="true">About Us</a></li>
-         <li class="contact"><a href="#popupContact" title="Contact" data-rel="popup" data-position-to="window" in-app="true">Contact</a></li>
-<div data-role="popup" id="popupContact" class="ui-content" data-theme="a" >
-                <strong> The Lacuna Blog </strong>
-                <ul>
-                <li>Version: 1.0</li>
-                <li>Release Date: 2015-03-16</li>
-                <li>Developed by: Subigya Kumar Nepal</li>
-                <li>Contact: <a href="mailto:admin@thelacunablog.com?subject=TheLacunaBlog mobile app&body=Hi!" target="_blank">Email</a></li>
-                <li>Twitter: <a href="http://www.twitter.com/SkNepal">@SkNepal</a></li>
-                </ul>
-</div>
-            <li class="search"><a href="#popupSearch" data-rel="popup" data-position-to="window" data-transition="pop" title="Search" in-app="true">Search</a></li>
+            <li class="home"><a href="index.html" title="Home" data-rel="close" in-app="true">Home</a></li>     <li class="authors"><a href="javascript:window.location.href='authors.html'" title="Authors" data-rel="close" in-app="true">Authors</a></li>
+          <li class="aboutus"><a href="#" title="About Us" data-rel="close" in-app="true">About Us</a></li>
+          <li class="contact"><a href="#" title="Contact" data-rel="close" in-app="true">Contact</a></li>
+            <li class="search"><a href="#popupSearch" data-rel="popup" data-position-to="origin" data-transition="pop" title="Search" in-app="true">Search</a></li>
             
             <div data-role="popup" id="popupSearch" class="ui-content" data-theme="a" >
 <form action="" onsubmit="javascript:window.location.href='searchresults.html?search='+document.getElementById('search').value;" target="_blank">
 <input type="search" name="search" id="search" value="" data-mini="true" placeholder="Search for..."/>
-   <!--  <button data-theme="a" data-mini="true" type="submit" style="width:90px; margin-left:auto;margin-right:auto;display:block;margin-top:10%;margin-bottom:0%" onclick="">Search</button>
-    -->
+     <button data-theme="a" data-mini="true" type="submit" style="width:90px; margin-left:auto;margin-right:auto;display:block;margin-top:10%;margin-bottom:0%" onclick="">Search</button>
+    
 </form>
 </div>
           </ul>
@@ -100,7 +90,7 @@
 
 </div>
         
-    <div class="footer" data-id="footer" data-role="footer" data-tap-toggle="false">
+    <div class="footer" data-id="footer" data-role="footer" data-tap-toggle="false"  data-transition="slidedown" data-position="fixed">
         <div data-role="navbar" data-theme="b" data-content-theme="b">
 		<ul>
 			<li><a href="javascript:share()" data-transition="pop" in-app="true"><i class="fa fa-share-alt-square"></i>Share</a></li>
@@ -114,9 +104,13 @@
             $('form').on('submit',function(e) {
       e.preventDefault();  });
             
-         $("#panel-left").on("click", function () {
-   $("#panel-left").panel("close");
-  });  
+  $('a').click(function(e){
+              var href = ["#panel-left", "#panel-right", "#"];
+        if (!( $.inArray($(e.currentTarget).attr('href'), href) != -1  || $(e.currentTarget).attr('in-app') == 'true')) {
+    e.preventDefault();
+    window.open($(e.currentTarget).attr('href'), '_system', '');
+   }
+});
         </script>
           </div>
     </body>

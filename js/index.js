@@ -160,6 +160,7 @@ var app = {
                 $(".wrapper").trigger("create");
                 $("#authorslist").html(authorData);
                 $("#authorslist").listview("refresh");
+                
                 doneLoading();
                 dfd.resolve(data);
 
@@ -189,8 +190,9 @@ var app = {
                 var source = $("#page-template").html();
                 var template = Handlebars.compile(source);
                 var pageData = template(data);
-                $("#page-data").html(pageData);
-             //   $("#page-data").trigger("create");
+               $('#page-data').html(pageData);
+        $('#page-data').trigger('create');
+                      
                 doneLoading();
 
             },

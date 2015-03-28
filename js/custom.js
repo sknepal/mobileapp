@@ -33,14 +33,7 @@ function showMessage(msg, time) {
     }, time);
 }
     
-  $('a').click(function(e){
-              var href = ["#panel-left", "#panel-right", "#"];
-        if (!( $.inArray($(e.currentTarget).attr('href'), href) != -1  || $(e.currentTarget).attr('in-app') == 'true')) {
-    e.preventDefault();
-       console.log("second");
-    window.open($(e.currentTarget).attr('href'), '_system', '');
-   }
-});
+
 
 function prev(where, arg) {
     if (page <=1) { showMessage('You\'re already on the first page.', 1000);

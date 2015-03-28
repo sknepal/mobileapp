@@ -18,9 +18,7 @@
 */
 /*
 div.hwrapper { overflow: hidden; width: inherit; }
-.ui-page {
-    -webkit-backface-visibility: hidden;
-}
+
 */
 /*
 .ui-listview .ui-li-static {
@@ -55,6 +53,11 @@ div.hwrapper { overflow: hidden; width: inherit; }
 
 strong { font-style: bold; }
 */
+.ui-page {
+    backface-visibility:hidden;
+-webkit-backface-visibility:hidden; /* Chrome and Safari */
+-moz-backface-visibility:hidden; /* Firefox */
+}
 
  ul li h3 {
 white-space: normal !important;
