@@ -231,6 +231,10 @@ overflow-wrap: break-word;
 .blog {
     padding: 0 !important;
 }
+
+body{
+background-color:transparent;
+}
 /*'\f0e0'
 /*
 

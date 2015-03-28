@@ -27,7 +27,9 @@
   <div class="hwrapper" data-role="page" id="single-page">
     <div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
     <ul>
-      <li class="home"><a href="javascript:window.location.href='index.html'" title="Home" data-rel="close" in-app="true">Home</a></li><li class="authors"><a href="javascript:window.location.href='authors.html'" title="Authors" data-rel="close" in-app="true">Authors</a></li>
+      <li class="home"><a href="javascript:window.location.href='index.html'" title="Home" data-rel="close" in-app="true">Home</a></li><li class="authors"><a href="" onclick="$(':mobile-pagecontainer').pagecontainer('change', 'authors.html', {  transition: 'flow',
+  reload    : true });
+" title="Authors" data-rel="close" in-app="true">Authors</a></li>
           <li class="aboutus"><a href="page.html?page=about_us" title="About Us" data-rel="close" in-app="true">About Us</a></li>
 <li class="contact"><a href="#popupContact" title="Contact" data-rel="popup" data-position-to="window" in-app="true">Contact</a></li>
 <div data-role="popup" id="popupContact" class="ui-content" data-theme="a" >
@@ -98,6 +100,7 @@
   while (match = search.exec(query))
     urlParams[decode(match[1])] = decode(match[2]);
   })();
+          
 $("#panel-left").on("click", function () {
    $("#panel-left").panel("close");
   });   

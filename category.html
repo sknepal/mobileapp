@@ -27,6 +27,44 @@
 </head>
 <body onLoad="onLoad()">
   <div class="hwrapper" data-role="page" id="category-page">
+          <script> $("#category-page").on("pageshow",function(event, ui){
+ page=1;
+  // Handler for .ready() called.
+    loading();
+          
+    var urlParams;
+(window.onpopstate = function () {
+    
+  var match,
+  pl     = /\+/g,  // Regex for replacing addition symbol with a space
+  search = /([^&=]+)=?([^&]*)/g,
+  decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+  query  = window.location.search.substring(1);
+
+  urlParams = {};
+  while (match = search.exec(query))
+    urlParams[decode(match[1])] = decode(match[2]);
+  })();
+    
+   app.get("category", 1, urlParams["cat"]);
+                           
+
+});
+              $('form').on('submit',function(e) {
+      e.preventDefault();  });
+              $('a').click(function(e){
+              var href = ["#panel-left", "#panel-right", "#"];
+        if (!( $.inArray($(e.currentTarget).attr('href'), href) != -1  || $(e.currentTarget).attr('in-app') == 'true')) {
+    e.preventDefault();
+       console.log("second");
+    window.open($(e.currentTarget).attr('href'), '_system', '');
+   }
+});
+
+          $("#panel-left").on("click", function () {
+   $("#panel-left").panel("close");
+  });   
+  </script>
     <div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
     <ul>
       <li class="home"><a href="javascript:window.location.href='index.html'" title="Home" data-rel="close" in-app="true">Home</a></li><li class="authors"><a href="javascript:window.location.href='authors.html'" title="Authors" data-rel="close" in-app="true">Authors</a></li>
@@ -71,7 +109,7 @@
     </div>
     <div id="blog-content" data-role="content" class="blog">
       
-      <div id="blog-data" data-iscroll="" class="wrapper">
+      <div id="blog-data" data-iscroll="" class="cwrapper">
           <div class="iscroll-pulldown">
         <span class="iscroll-pull-icon"></span><span class="iscroll-pull-label"></span>
       </div>
@@ -96,40 +134,7 @@
     <li><a href="javascript:next('category', urlParams['cat'])" data-icon="arrow-r" in-app="true"></a></li>
     </ul>
 	</div></div>
-      <script>$(document).ready(function() {
- page=1;
-  // Handler for .ready() called.
-    loading();
-    });
-    var urlParams;
-(window.onpopstate = function () {
-    
-  var match,
-  pl     = /\+/g,  // Regex for replacing addition symbol with a space
-  search = /([^&=]+)=?([^&]*)/g,
-  decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
-  query  = window.location.search.substring(1);
-
-  urlParams = {};
-  while (match = search.exec(query))
-    urlParams[decode(match[1])] = decode(match[2]);
-  })();
-              $('form').on('submit',function(e) {
-      e.preventDefault();  });
-              $('a').click(function(e){
-              var href = ["#panel-left", "#panel-right", "#"];
-        if (!( $.inArray($(e.currentTarget).attr('href'), href) != -1  || $(e.currentTarget).attr('in-app') == 'true')) {
-    e.preventDefault();
-       console.log("second");
-    window.open($(e.currentTarget).attr('href'), '_system', '');
-   }
-});
-
-   app.get("category", 1, urlParams["cat"]);
-          $("#panel-left").on("click", function () {
-   $("#panel-left").panel("close");
-  });   
-  </script>
+  
   </div>
 
     </body>

@@ -156,15 +156,16 @@ var app = {
                 var source = $("#author-template").html();
                 var template = Handlebars.compile(source);
                 var authorData = template(data);
-                $(".wrapper .iscroll-content").append("<ul data-role='listview' data-inset='true' id='authorslist' data-dismissible='false' data-filter='true' data-filter-placeholder='Search for an author...'> </ul>");
-                $(".wrapper").trigger("create");
+                $(".wrapperb .iscroll-content").append("<ul data-role='listview' data-inset='true' id='authorslist' data-dismissible='false' data-filter='true' data-filter-placeholder='Search for an author...'> </ul>");
+                $(".wrapperb").trigger("create");
                
                 $("#authorslist").html(authorData);
-                $("#authorslist").listview("refresh");
                 
-                        $(".wrapper").iscrollview("resizeWrapper");
+                        $(".wrapperb").iscrollview("resizeWrapper");
+                        $(".wrapperb").iscrollview("refresh");
+                $("#authorslist").listview("refresh");
+            //     $(".wrapper").listview().listview("refresh");
                     //$('.wrapper').listview('refresh');
-                        $(".wrapper").iscrollview("refresh");
                 doneLoading();
                 dfd.resolve(data);
 
@@ -232,7 +233,7 @@ var app = {
                 jsonURL += jsonRequest;
                 jsonURL += '&slug=' + arg + '&page=' + pagecount + '&count=' + count;
             }
-
+        var wrap = ".cwrapper";
             var dfd = $.Deferred();
             $.ajax({
                 url: jsonURL,
@@ -244,16 +245,17 @@ var app = {
                     var source = $("#blog-template").html();
                     var template = Handlebars.compile(source);
                     var resultData = template(data);
-
-                    $(".wrapper .iscroll-content").append("<ul data-role='listview' data-inset='true' id='all-posts' data-dismissible='false'> </ul>");
-                    $(".wrapper").trigger("create");
+                
+                    $(wrap + " .iscroll-content").html("<ul data-role='listview' data-inset='true' id='all-posts' data-dismissible='false'> </ul>");
+                    $(wrap).trigger("create");
                     $('#all-posts').listview('refresh');
                     $('#all-posts').html(resultData);
                     $('#all-posts').listview('refresh');
                         
-                        $(".wrapper").iscrollview("resizeWrapper");
+                        $( wrap).iscrollview("resizeWrapper");
                     //$('.wrapper').listview('refresh');
-                        $(".wrapper").iscrollview("refresh");
+                        $(wrap).iscrollview("refresh");
+                       
                     doneLoading();
 
                     dfd.resolve(data);

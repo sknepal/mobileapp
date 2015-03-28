@@ -111,6 +111,34 @@
     window.open($(e.currentTarget).attr('href'), '_system', '');
    }
 });
+            document.addEventListener("deviceready", appReady, false);
+
+           //HANDLE BACK BUTTON
+function appReady()
+{   
+    document.addEventListener('backbutton', function(e){
+   
+             alert("Test");
+     /*   var activePage = $.mobile.activePage.attr('id');
+
+        if(activePage == 'menuPage')
+        {
+            e.preventDefault();
+            navigator.app.exitApp();
+        }
+        else if(activePage == 'staticsPage')
+        {
+            e.preventDefault();
+            $.mobile.changePage('#menuPage');
+        }
+        else 
+        {
+             navigator.app.backHistory();
+        }*/
+    }, false);
+}
+                            
+            
         </script>
           </div>
     </body>
