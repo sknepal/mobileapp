@@ -20,6 +20,7 @@
 var title;
  var searchFound;
 var url;
+
 this.share = function (name, uri) {
     if (typeof name === 'undefined' || typeof uri === 'undefined') {
         window.plugins.socialsharing.share(title, null, null, url);
@@ -206,17 +207,22 @@ var app = {
                 handleError(xhr, textStatus, errorThrown);
             }
         });
-    },
+    },  
        get: function (type, pagecount, arg) {
         function getPosts() {
             var jsonRequest;
-           
             var count = 13;
+          var listview = "home-page-posts";
+            var dfd = $.Deferred();
+              var templatesource = "#blog-template";
             var jsonURL = "http://thelacunablog.com/?json=";
             if (type == 'category') {
                 jsonRequest = "get_category_posts";
                 jsonURL += jsonRequest;
                 jsonURL += '&slug=' + arg + '&page=' + pagecount + '&count=' + count;
+                var wrap = ".cwrapper";
+                listview = $.mobile.activePage.attr('id') + "-posts";
+               var templatesource = "#cat-template";
             }
             else if (type == 'search') {
                 jsonRequest = "get_search_results";
@@ -227,14 +233,23 @@ var app = {
                 jsonRequest = "get_recent_posts";
                 jsonURL += jsonRequest;
                 jsonURL += '&page=' + pagecount + '&count=' + count;
+          //   $.mobile.activePage.attr('id') + "-posts";
+           var wrap = ".wrapper";
             }
             else { // type == 'author'
                 jsonRequest = "get_author_posts";
                 jsonURL += jsonRequest;
                 jsonURL += '&slug=' + arg + '&page=' + pagecount + '&count=' + count;
             }
-        var wrap = ".cwrapper";
-            var dfd = $.Deferred();
+       
+  /*          var dfd = $.Deferred();
+             jQuery.mobile.pageContainer.pagecontainer('change', window.location.href, {
+    allowSamePageTransition: true,
+    transition: 'none',
+    reload: true 
+    // 'reload' parameter not working yet: //github.com/jquery/jquery-mobile/issues/7406
+  });*/
+            
             $.ajax({
                 url: jsonURL,
                 type: 'GET',
@@ -242,22 +257,20 @@ var app = {
                 success: function (data) {
                     if (data.count != '0') {
                     if (type=='search') searchFound = true;
-                    var source = $("#blog-template").html();
+                    var source = $(templatesource).html();
                     var template = Handlebars.compile(source);
                     var resultData = template(data);
-                
-                    $(wrap + " .iscroll-content").html("<ul data-role='listview' data-inset='true' id='all-posts' data-dismissible='false'> </ul>");
-                    $(wrap).trigger("create");
-                    $('#all-posts').listview('refresh');
-                    $('#all-posts').html(resultData);
-                    $('#all-posts').listview('refresh');
-                        
-                        $( wrap).iscrollview("resizeWrapper");
-                    //$('.wrapper').listview('refresh');
-                        $(wrap).iscrollview("refresh");
-                       
+                          // $("#category-page").trigger('pagecreate');
+                    //    $(wrap + " .iscroll-content").html();
+                    $(wrap + " .iscroll-content").append("<ul data-role='listview' data-inset='true' id='" + listview + "' data-dismissible='false'> </ul>");
+                    $(wrap + " .iscroll-content").trigger("create");
+                  //  $('#all-posts').listview('refresh');
+                    $('#' + listview).html(resultData);
+                    $('#' + listview).listview('refresh');
+                    $( wrap).iscrollview("resizeWrapper");
+                    $(wrap).iscrollview("refresh");
+                     
                     doneLoading();
-
                     dfd.resolve(data);
                     }
                     else {
@@ -282,9 +295,10 @@ var app = {
         };
         getPosts().then(function (data) {
             //   localStorage.removeItem("postData");
-            $('#all-posts').on('click', 'li', function (e) {
+            $('#' + $.mobile.activePage.attr('id') + '-posts').on('click', 'li', function (e) {
                 localStorage.setItem('postData', JSON.stringify(data.posts[$(this).index()]));
             });
+             viewed = true;
         });
     }
 };/*

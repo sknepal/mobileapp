@@ -222,6 +222,10 @@ overflow-wrap: break-word;
     width: 100% !important;
     
 }  
+.cwrapper, .cwrapper div.iscroll-scroller {
+    width: 100% !important;
+    
+}  
 .ui-listview {
     margin: 0 !important;
 }
@@ -229,6 +233,10 @@ overflow-wrap: break-word;
     -webkit-backface-visibility: hidden;
 }
 .blog {
+    padding: 0 !important;
+}
+
+.cat{
     padding: 0 !important;
 }
 

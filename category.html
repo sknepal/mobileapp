@@ -25,11 +25,20 @@
     
   <title>Category</title>
 </head>
-<body onLoad="onLoad()">
-  <div class="hwrapper" data-role="page" id="category-page">
-          <script> $(document).one("pageshow",function(event, ui){
+<body>
+  <div class="hwrapper" data-role="page" id="category-page" data-cache="true">
+          <script>
+             /*   $('#category-page').on("pagebeforeshow",function(event, ui){
+                $(':mobile-pagecontainer').pagecontainer('change', window.location.href, {   allowSamePageTransition: true,
+    transition: 'none',
+  reload    : true });
+                    
+                    });*/
+              
+              $('#category-page').one("pageshow",function(event, ui){
  page=1;
   // Handler for .ready() called.
+                  if (viewed == false){
     loading();
           
  
@@ -47,7 +56,7 @@
   })();
     
    app.get("category", 1, urlParams["cat"]);
-                           
+                  }
 
 });
               $('form').on('submit',function(e) {
@@ -67,7 +76,9 @@
   </script>
     <div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
     <ul>
-      <li class="home"><a href="javascript:window.location.href='index.html'" title="Home" data-rel="close" in-app="true">Home</a></li><li class="authors"><a href="javascript:window.location.href='authors.html'" title="Authors" data-rel="close" in-app="true">Authors</a></li>
+      <li class="home"><a href="" onclick="$(':mobile-pagecontainer').pagecontainer('change', 'authors.html', {   allowSamePageTransition : true,
+    showLoadMsg             : true, transition: 'flow',
+  reload    : true });" title="Home" data-rel="close" in-app="true">Home</a></li><li class="authors"><a href="javascript:window.location.href='authors.html'" title="Authors" data-rel="close" in-app="true">Authors</a></li>
           <li class="aboutus"><a href="javascript:window.location.href='page.html?page=about-us'" title="About Us" data-rel="close" in-app="true">About Us</a></li>
           <li class="contact"><a href="#popupContact" title="Contact" data-rel="popup" data-position-to="window" in-app="true">Contact</a></li>
 <div data-role="popup" id="popupContact" class="ui-content" data-theme="a" >
@@ -107,13 +118,13 @@
         <li class="miscellaneous"><a data-transition="slide" href="javascript:window.location.href='category.html?cat=miscellaneous'" title="Miscellaneous" data-rel="close" in-app="true">Miscellaneous</a></li>
       </ul>
     </div>
-    <div id="blog-content" data-role="content" class="blog">
+    <div id="cat-content" data-role="content" class="cat">
       
-      <div id="blog-data" data-iscroll="" class="cwrapper">
+      <div id="cat-data" data-iscroll class="cwrapper">
           <div class="iscroll-pulldown">
         <span class="iscroll-pull-icon"></span><span class="iscroll-pull-label"></span>
       </div>
-      <script id="blog-template" type="text/x-handlebars-template">
+      <script id="cat-template" type="text/x-handlebars-template">
           {{#each posts}}
            <li><a data-transition="flip" href="single.html?{{@index}}" in-app="true">
                       <h3>{{{this.title}}}</h3>

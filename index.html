@@ -38,15 +38,17 @@
     
     <body>
 
-    <div class="hwrapper" id="home-page" data-role="page">
+    <div class="hwrapper" id="home-page" data-role="page" data-cache="false">
         <div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
         <ul>
           <li class="home"><a href="index.html"  title="Home" data-rel="close" in-app="true" data-transition="slide" class="ui-btn-active ui-state-persist" data-ajax="false">Home</a></li>
           <li class="authors"><a href="" onclick="$(':mobile-pagecontainer').pagecontainer('change', 'authors.html', {   allowSamePageTransition : true,
     showLoadMsg             : true, transition: 'flow',
   reload    : true });" title="Authors" data-rel="close" in-app="true" data-transition="none" rel="external">Authors</a></li>
-          <li class="aboutus"><a href="javascript:window.location='page.html?page=about-us'" title="About Us" data-rel="close" in-app="true" data-transition="none" >About Us</a></li>
-<li class="contact"><a href="javascript:window.open(('single.html'), '_self');" title="Contact" data-rel="popup" data-position-to="window" in-app="true" data-transition="none">Contact</a></li>
+          <li class="aboutus"><a href="" onclick="$(':mobile-pagecontainer').pagecontainer('change', 'page.html?page=about-us', {   allowSamePageTransition : true,
+    showLoadMsg             : true, transition: 'flow',
+  reload    : true });" title="About Us" data-rel="close" in-app="true" data-transition="none" >About Us</a></li>
+<li class="contact"><a href="#popupContact" title="Contact" data-rel="popup" data-position-to="window" in-app="true" data-transition="none">Contact</a></li>
 <div data-role="popup" id="popupContact" class="ui-content" data-theme="a" >
                 <strong> The Lacuna Blog </strong>
                 <ul>
@@ -60,7 +62,8 @@
             <li class="search"><a href="#popupSearch" data-rel="popup" data-position-to="window" data-transition="pop" title="Search" in-app="true">Search</a></li>
             
             <div data-role="popup" id="popupSearch" class="ui-content" data-theme="a" >
-<form action="" onsubmit="javascript:window.location.href='searchresults.html?search='+document.getElementById('search').value;" target="_blank">
+<form action="" onsubmit="$(':mobile-pagecontainer').pagecontainer('change', 'searchresults.html?search='+document.getElementById('search').value', {   allowSamePageTransition : true,
+    showLoadMsg             : true, transition: 'flow', reload    : true });" target="_blank">
 <input type="search" name="search" id="search" value="" data-mini="true" placeholder="Search for..." autofocus/>
    <!--  <button data-theme="a" data-mini="true" type="submit" style="width:90px; margin-left:auto;margin-right:auto;display:block;margin-top:10%;margin-bottom:0%" onclick="">Search</button>-->
     
@@ -98,7 +101,7 @@
   </div>
        <script id="blog-template" type="text/x-handlebars-template">        
           {{#each posts}}
-                  <li><a data-transition="slidedown" href="single.html?{{@index}}" in-app="true">
+                  <li><a data-transition="flip" href="single.html?{{@index}}" in-app="true">
                       <h3>{{{this.title}}}</h3>
                       <span class="ui-li-count">{{comments.length}}</span>
                       <p style="white-space:normal">  Author: {{{author.name}}}</p>
@@ -130,7 +133,7 @@
 });
     app.initialize();
               page=1;
-             $(document).ready(function() {
+            $('#home-page').one("pageshow",function(event, ui){
    
   // Handler for .ready() called.
     loading();
