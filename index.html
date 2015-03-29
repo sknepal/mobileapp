@@ -5,31 +5,25 @@
   <meta name="format-detection" content="telephone=no" />
         <meta name="viewport"  id="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height;" /> 
         
-  <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
-        
-  <link rel="stylesheet" type="text/css" href="css/jquery.mobile.pagination.css" /> 
-<!--          <link rel="stylesheet" href="js/jquery.mobile.simultaneous-transitions-replace.css"/>-->
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css" />
+    
   <link rel="stylesheet" type="text/css" href="css/style.css" />
-           
+     <link rel="stylesheet" type="text/css" href="css/jquery.mobile.pagination.css" />    
   <link rel="stylesheet" href="css/jquery.mobile.iscrollview.css" />
   <link rel="stylesheet" href="css/jquery.mobile.iscrollview-pull.css" />
-        
   <script type="text/javascript" src="cordova.js"></script>
   <script type="text/javascript" src="js/libs/handlebars.js"></script>
-        
+  <script type="text/javascript" src="js/index.js"></script>
   <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-<!--        <script src="js/jquery.mobile-transition-handler-simple.js"></script>
-      <script src="js/jquery.mobile.simultaneous-transitions-replace-simple.js"></script>-->
   <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
   <script type="text/javascript" src="js/SocialSharing.js"></script>
-<script src="js/custom.js" type="text/javascript"></script>
-  <script type="text/javascript" src="js/index.js"></script>
-        
   <script src="js/iscroll.js" type="text/javascript"></script>
   <script src="js/jquery.mobile.iscrollview.js" type="text/javascript"></script>
-  
-  <script src="pull.js" type="text/javascript"></script> 
+            <script src="js/pull.js" type="text/javascript"></script>
+        <script src="js/custom.js" type="text/javascript"></script>
+    
+        
 
 
  
@@ -38,16 +32,12 @@
     
     <body>
 
-    <div class="hwrapper" id="home-page" data-role="page" data-cache="false">
+    <div class="hwrapper" id="home-page" data-role="page">
         <div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
         <ul>
-          <li class="home"><a href="index.html"  title="Home" data-rel="close" in-app="true" data-transition="slide" class="ui-btn-active ui-state-persist" data-ajax="false">Home</a></li>
-          <li class="authors"><a href="" onclick="$(':mobile-pagecontainer').pagecontainer('change', 'authors.html', {   allowSamePageTransition : true,
-    showLoadMsg             : true, transition: 'flow',
-  reload    : true });" title="Authors" data-rel="close" in-app="true" data-transition="none" rel="external">Authors</a></li>
-          <li class="aboutus"><a href="" onclick="$(':mobile-pagecontainer').pagecontainer('change', 'page.html?page=about-us', {   allowSamePageTransition : true,
-    showLoadMsg             : true, transition: 'flow',
-  reload    : true });" title="About Us" data-rel="close" in-app="true" data-transition="none" >About Us</a></li>
+           <li class="home"><a href="" onclick="changePage('index.html');"  title="Home" data-rel="close" in-app="true">Home</a></li>
+          <li class="authors"><a href="" onclick="changePage('authors.html');" title="Authors" data-rel="close" in-app="true" >Authors</a></li>
+          <li class="aboutus"><a href="" onclick="changePage('page.html?page=about-us');" title="About Us" data-rel="close" in-app="true" >About Us</a></li>
 <li class="contact"><a href="#popupContact" title="Contact" data-rel="popup" data-position-to="window" in-app="true" data-transition="none">Contact</a></li>
 <div data-role="popup" id="popupContact" class="ui-content" data-theme="a" >
                 <strong> The Lacuna Blog </strong>
@@ -62,8 +52,7 @@
             <li class="search"><a href="#popupSearch" data-rel="popup" data-position-to="window" data-transition="pop" title="Search" in-app="true">Search</a></li>
             
             <div data-role="popup" id="popupSearch" class="ui-content" data-theme="a" >
-<form action="" onsubmit="$(':mobile-pagecontainer').pagecontainer('change', 'searchresults.html?search='+document.getElementById('search').value', {   allowSamePageTransition : true,
-    showLoadMsg             : true, transition: 'flow', reload    : true });" target="_blank">
+<form action="" onsubmit="changePage('searchresults.html?search=' + document.getElementById('search').value);" target="_blank">
 <input type="search" name="search" id="search" value="" data-mini="true" placeholder="Search for..." autofocus/>
    <!--  <button data-theme="a" data-mini="true" type="submit" style="width:90px; margin-left:auto;margin-right:auto;display:block;margin-top:10%;margin-bottom:0%" onclick="">Search</button>-->
     
@@ -82,12 +71,11 @@
     <!-- /#header -->
       <div class="panel right" data-role="panel" data-position="right" data-display="overlay" id="panel-right">
           <ul>
-        <li class="how-tos"><a href="" onclick="$(':mobile-pagecontainer').pagecontainer('change', 'category.html?cat=how-tos', {  transition: 'flow',
-  reload    : true });" title="How Tos" data-rel="close" in-app="true">How Tos</a></li>
-        <li class="freebies"><a href="javascript:window.open(('category.html?cat=freebies'), '_self');" title="Freebies" data-rel="close" in-app="true" data-transition="slide" data-ajax="false">Freebies</a></li>
-        <li class="useful-tools"><a href="" onclick="load()" title="Useful Tools" data-rel="close" in-app="true" data-transition="none" class="Next">Useful Tools</a></li>
-        <li class="blogging"><a href="" onclick="loadmore()" title="Blogging" data-rel="close" in-app="true">Blogging</a></li>
-        <li class="miscellaneous"><a href="" onclick="loadevenmore()" title="Miscellaneous" data-rel="close" in-app="true">Miscellaneous</a></li>
+        <li class="how-tos"><a href="" onclick="changePage('category.html?cat=how-tos');" title="How Tos" data-rel="close" in-app="true">How Tos</a></li>
+        <li class="freebies"><a href="" onclick="changePage('category.html?cat=freebies');" title="Freebies" data-rel="close" in-app="true" data-transition="slide" data-ajax="false">Freebies</a></li>
+        <li class="useful-tools"><a href="" onclick="changePage('category.html?cat=useful-tools');" title="Useful Tools" data-rel="close" in-app="true" data-transition="none" class="Next">Useful Tools</a></li>
+        <li class="blogging"><a href="" onclick="changePage('category.html?cat=blogging');" title="Blogging" data-rel="close" in-app="true">Blogging</a></li>
+        <li class="miscellaneous"><a href="" onclick="changePage('category.html?cat=miscellaneous');" title="Miscellaneous" data-rel="close" in-app="true">Miscellaneous</a></li>
       </ul>
     </div>
 <!--        -->
@@ -124,6 +112,7 @@
 	   </div> 
     </div>  
          <script type="text/javascript">
+             
                $('a').click(function(e){
               var href = ["#panel-left", "#panel-right", "#"];
         if (!( $.inArray($(e.currentTarget).attr('href'), href) != -1  || $(e.currentTarget).attr('in-app') == 'true')) {
@@ -131,51 +120,28 @@
     window.open($(e.currentTarget).attr('href'), '_system', '');
    }
 });
-    app.initialize();
+             
               page=1;
+             
+           /*  $('#home-page').one("pageinit",function(event, ui){
+    if (!app.initialize()) app.initialize();
+              });*/
+                 
             $('#home-page').one("pageshow",function(event, ui){
-   
   // Handler for .ready() called.
     loading();
-    });
-             app.get("blog", 1);
+                 app.get("blog", 1);
+    });       
+             
               $('form').on('submit',function(e) {
       e.preventDefault();  });
              
      $("#panel-left").on("click", function () {
    $("#panel-left").panel("close");
   });    
-                function load() {              
-            event.preventDefault();
-            $.mobile.loading('show'); 
-                     var ref = window.open('category.html?cat=blogging', '_self', 'hidden=yes');
-            setTimeout(function() {    
-              // window.open(('category.html?cat=blogging'), '_self');
-                //window.location.assign('test.html');
-                ref.show();
-            }, 50);
-                }
+     
              
-             function loadmore(){
-                 event.preventDefault();
-            $.mobile.loading('show');       
-             var ref = window.open(('category.html?cat=blogging'), '_self', 'hidden=yes');
-            //    var ref=   window.location.assign('category.html?cat=blogging');
-            setTimeout(function() {    
-             //  window.open(('category.html?cat=blogging'), '_self');
-              ref.show();
-            }, 150);
-             }
              
-                function loadevenmore(){
-                 event.preventDefault();
-                    $.mobile.loading('show');
-                    var ref = window.open('category.html?cat=blogging', '_blank', 'hidden=yes');
-            setTimeout(function() {    
-ref.show();
-              //  window.location.assign('category.html?cat=blogging');
-            }, 100);
-             }
                  
         </script>
       

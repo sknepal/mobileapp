@@ -23,11 +23,12 @@
   <title>Search Results</title>
 </head>
 <body>
-  <div class="hwrapper" data-role="page" id="category-page">
+  <div class="hwrapper" data-role="page" id="search-page">
     <div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
     <ul>
-      <li class="home"><a href="javascript:window.location.href='index.html'" title="Home" data-rel="close" in-app="true">Home</a></li><li class="authors"><a href="javascript:window.location.href='authors.html'" title="Authors" data-rel="close" in-app="true">Authors</a></li>
-          <li class="aboutus"><a href="javascript:window.location.href='page.html?page=about-us'" title="About Us" data-rel="close" in-app="true">About Us</a></li>
+      <li class="home"><a href="" onclick="changePage('index.html');"  title="Home" data-rel="close" in-app="true">Home</a></li>
+          <li class="authors"><a href="" onclick="changePage('authors.html');" title="Authors" data-rel="close" in-app="true" >Authors</a></li>
+          <li class="aboutus"><a href="" onclick="changePage('page.html?page=about-us');" title="About Us" data-rel="close" in-app="true" >About Us</a></li>
           <li class="contact"><a href="#popupContact" title="Contact" data-rel="popup" data-position-to="window" in-app="true">Contact</a></li>
             <li class="search"><a href="#popupSearch" data-rel="popup" data-position-to="window" data-transition="pop" title="Search" in-app="true">Search</a></li>
             
@@ -59,17 +60,17 @@
     <div class="panel right" data-role="panel" data-position="right" data-display="overlay" id="panel-right">
 
       <ul>
-        <li class="how-tos"><a data-transition="slide" href="javascript:window.location.href='category.html?cat=how-tos'" title="How Tos" data-rel="close" in-app="true">How Tos</a></li>
-        <li class="freebies"><a data-transition="slide" href="javascript:window.location.href='category.html?cat=freebies'" title="Freebies" data-rel="close" in-app="true">Freebies</a></li>
-        <li class="useful-tools"><a data-transition="slide" href="javascript:window.location.href='category.html?cat=useful-tools'" title="Useful Tools" data-rel="close" in-app="true">Useful Tools</a></li>
-        <li class="blogging"><a data-transition="slide" href="javascript:window.location.href='category.html?cat=blogging'" title="Blogging" data-rel="close" in-app="true">Blogging</a></li>
-        <li class="miscellaneous"><a data-transition="slide" href="javascript:window.location.href='category.html?cat=miscellaneous'" title="Miscellaneous" data-rel="close" in-app="true">Miscellaneous</a></li>
+       <li class="how-tos"><a href="" onclick="changePage('category.html?cat=how-tos');" title="How Tos" data-rel="close" in-app="true">How Tos</a></li>
+        <li class="freebies"><a href="" onclick="changePage('category.html?cat=freebies');" title="Freebies" data-rel="close" in-app="true" data-transition="slide" data-ajax="false">Freebies</a></li>
+        <li class="useful-tools"><a href="" onclick="changePage('category.html?cat=useful-tools');" title="Useful Tools" data-rel="close" in-app="true" data-transition="none" class="Next">Useful Tools</a></li>
+        <li class="blogging"><a href="" onclick="changePage('category.html?cat=blogging');" title="Blogging" data-rel="close" in-app="true">Blogging</a></li>
+        <li class="miscellaneous"><a href="" onclick="changePage('category.html?cat=miscellaneous');" title="Miscellaneous" data-rel="close" in-app="true">Miscellaneous</a></li>
       </ul>
     </div>
     <div id="searchresults-content" data-role="content" class="blog" >
-      <div id="searchresults-data" data-iscroll="" class="wrapper">
+      <div id="searchresults-data" data-iscroll="" class="swrapper">
       
-      <script id="blog-template" type="text/x-handlebars-template">
+      <script id="search-template" type="text/x-handlebars-template">
           {{#each posts}}
            <li><a data-transition="flip" href="single.html?{{@index}}" in-app="true">
                       <h3>{{{this.title}}}</h3>
@@ -92,12 +93,11 @@
       <script>
        $('form').on('submit',function(e) {
       e.preventDefault();  });
-          $(document).ready(function() {
+          page=1;
+         $('#search-page').one("pageshow",function(event, ui){
   // Handler for .ready() called.
     loading();
-    });
-     page=1;
-       var urlParams;
+                    var urlParams;
 (window.onpopstate = function () {
     
   var match,
@@ -111,7 +111,10 @@
     urlParams[decode(match[1])] = decode(match[2]);
   })();
    app.get("search", 1, urlParams["search"]);
-          $("#panel-left").on("click", function () {
+  
+    });
+     
+                  $("#panel-left").on("click", function () {
    $("#panel-left").panel("close");
   });   
               $('form').on('submit',function(e) {
@@ -124,6 +127,7 @@
     window.open($(e.currentTarget).attr('href'), '_system', '');
    }
 });
+
             </script>
   </div>
 

@@ -211,7 +211,7 @@ var app = {
        get: function (type, pagecount, arg) {
         function getPosts() {
             var jsonRequest;
-            var count = 13;
+            var count = 13; var wrap ;
           var listview = "home-page-posts";
             var dfd = $.Deferred();
               var templatesource = "#blog-template";
@@ -220,21 +220,25 @@ var app = {
                 jsonRequest = "get_category_posts";
                 jsonURL += jsonRequest;
                 jsonURL += '&slug=' + arg + '&page=' + pagecount + '&count=' + count;
-                var wrap = ".cwrapper";
+                wrap = ".cwrapper";
                 listview = $.mobile.activePage.attr('id') + "-posts";
-               var templatesource = "#cat-template";
+              templatesource = "#cat-template";
+               
+                
             }
             else if (type == 'search') {
                 jsonRequest = "get_search_results";
                 jsonURL += jsonRequest;
                 jsonURL += '&search=' + arg + '&page=' + pagecount + '&count=' + count;
+                templatesource = "#search-template";
+                wrap = ".swrapper";
             }
             else if (type == 'blog') {
                 jsonRequest = "get_recent_posts";
                 jsonURL += jsonRequest;
                 jsonURL += '&page=' + pagecount + '&count=' + count;
           //   $.mobile.activePage.attr('id') + "-posts";
-           var wrap = ".wrapper";
+           wrap = ".wrapper";
             }
             else { // type == 'author'
                 jsonRequest = "get_author_posts";
@@ -263,7 +267,7 @@ var app = {
                           // $("#category-page").trigger('pagecreate');
                     //    $(wrap + " .iscroll-content").html();
                     $(wrap + " .iscroll-content").append("<ul data-role='listview' data-inset='true' id='" + listview + "' data-dismissible='false'> </ul>");
-                    $(wrap + " .iscroll-content").trigger("create");
+                    $(wrap).trigger("create");
                   //  $('#all-posts').listview('refresh');
                     $('#' + listview).html(resultData);
                     $('#' + listview).listview('refresh');
@@ -271,6 +275,8 @@ var app = {
                     $(wrap).iscrollview("refresh");
                      
                     doneLoading();
+                        
+                       // pageContainerElement.page({ domCache: true });
                     dfd.resolve(data);
                     }
                     else {
@@ -297,8 +303,11 @@ var app = {
             //   localStorage.removeItem("postData");
             $('#' + $.mobile.activePage.attr('id') + '-posts').on('click', 'li', function (e) {
                 localStorage.setItem('postData', JSON.stringify(data.posts[$(this).index()]));
+                  // $( "#category-page" ).page( 'option', 'domCache', true );
+ 
+              //  if ($.mobile.activePage.attr('id') == 'category-page') viewed = true;
             });
-             viewed = true;
+            
         });
     }
 };/*

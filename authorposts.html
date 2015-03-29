@@ -29,8 +29,9 @@
   <div class="hwrapper" data-role="page" id="authorposts-page">
     <div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
     <ul>
-      <li class="home"><a href="javascript:window.location.href='index.html'" title="Home" data-rel="close" in-app="true">Home</a></li>     <li class="authors"><a href="javascript:window.location.href='authors.html'" title="Authors" data-rel="close" in-app="true">Authors</a></li>
-          <li class="aboutus"><a href="javascript:window.location.href='page.html?page=about-us'" title="About Us" data-rel="close" in-app="true">About Us</a></li>
+     <li class="home"><a href="" onclick="changePage('index.html');"  title="Home" data-rel="close" in-app="true">Home</a></li>
+          <li class="authors"><a href="" onclick="changePage('authors.html');" title="Authors" data-rel="close" in-app="true" >Authors</a></li>
+          <li class="aboutus"><a href="" onclick="changePage('page.html?page=about-us');" title="About Us" data-rel="close" in-app="true" >About Us</a></li>
           <li class="contact"><a href="#popupContact" title="Contact" data-rel="popup" data-position-to="window" in-app="true">Contact</a></li>
 <div data-role="popup" id="popupContact" class="ui-content" data-theme="a" >
                 <strong> The Lacuna Blog </strong>
@@ -62,11 +63,11 @@
     <div class="panel right" data-role="panel" data-position="right" data-display="overlay" id="panel-right">
 
       <ul>
-        <li class="how-tos"><a data-transition="slide" href="javascript:window.location.href='category.html?cat=how-tos'" title="How Tos" data-rel="close" in-app="true">How Tos</a></li>
-        <li class="freebies"><a data-transition="slide" href="javascript:window.location.href='category.html?cat=freebies'" title="Freebies" data-rel="close" in-app="true">Freebies</a></li>
-        <li class="useful-tools"><a data-transition="slide" href="javascript:window.location.href='category.html?cat=useful-tools'" title="Useful Tools" data-rel="close" in-app="true">Useful Tools</a></li>
-        <li class="blogging"><a data-transition="slide" href="javascript:window.location.href='category.html?cat=blogging'" title="Blogging" data-rel="close" in-app="true">Blogging</a></li>
-        <li class="miscellaneous"><a data-transition="slide" href="javascript:window.location.href='category.html?cat=miscellaneous'" title="Miscellaneous" data-rel="close" in-app="true">Miscellaneous</a></li>
+        <li class="how-tos"><a href="" onclick="changePage('category.html?cat=how-tos');" title="How Tos" data-rel="close" in-app="true">How Tos</a></li>
+        <li class="freebies"><a href="" onclick="changePage('category.html?cat=freebies');" title="Freebies" data-rel="close" in-app="true" data-transition="slide" data-ajax="false">Freebies</a></li>
+        <li class="useful-tools"><a href="" onclick="changePage('category.html?cat=useful-tools');" title="Useful Tools" data-rel="close" in-app="true" data-transition="none" class="Next">Useful Tools</a></li>
+        <li class="blogging"><a href="" onclick="changePage('category.html?cat=blogging');" title="Blogging" data-rel="close" in-app="true">Blogging</a></li>
+        <li class="miscellaneous"><a href="" onclick="changePage('category.html?cat=miscellaneous');" title="Miscellaneous" data-rel="close" in-app="true">Miscellaneous</a></li>
       </ul>
     </div>
     <div id="blog-content" data-role="content" class="blog">

@@ -14,6 +14,30 @@ function loading() {
     });
 }
 
+
+function changeCat(changeTo){
+    
+    $(':mobile-pagecontainer').pagecontainer('change', changeTo, {
+        transition: 'flow',
+        reload    : true,
+        changeHash: false,
+      allowSamePageTransition: true
+    });
+}
+
+function changePage(changeTo){
+    
+    $(':mobile-pagecontainer').pagecontainer('change',changeTo, {
+                          transition: 'flow',
+        showLoadMsg             : true,
+       // changeHash: true,
+                        // reverse: false,
+                          //changeHash: true,
+        reload:false
+                         // reload:false
+                        });
+}
+
 function doneLoading() {
     $.mobile.loading('hide');
     $("body").find("*").removeAttr("disabled");
