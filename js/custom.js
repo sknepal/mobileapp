@@ -95,5 +95,6 @@ function handleError(xhr, textStatus, errorThrown) {
     var clearErrorMessage = setInterval(function () {
         $.mobile.loading('hide');
         clearInterval(clearErrorMessage);
+        window.history.back()
     }, 3000);
 }

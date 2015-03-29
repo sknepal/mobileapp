@@ -4,7 +4,7 @@
   <meta name="format-detection" content="telephone=no" />
      <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no" />
         
- <!-- <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css" />
   <link rel="stylesheet" type="text/css" href="css/style.css" />
      <link rel="stylesheet" type="text/css" href="css/jquery.mobile.pagination.css" />    
@@ -22,7 +22,7 @@
      <script src="js/custom.js" type="text/javascript"></script>   
 
       <script>
-        </script>-->
+        </script>
   <title>Authors</title>
 </head>
 <body>
@@ -75,7 +75,7 @@
     <div id="author-data" data-iscroll class="wrapperb"> </div>
       <script id="author-template" type="text/x-handlebars-template">
           {{#each authors}}
-           <li><a data-transition="slidedown" href="javascript:window.location.href='authorposts.html?authname={{{slug}}}'">
+           <li><a data-transition="slidedown" href="" onclick="changePage('authorposts.html?authname={{{slug}}}');">
                       <h3>{{{name}}}</h3>
 <!--
                       <span class="ui-li-count">{{comments.length}}</span> 
@@ -97,9 +97,10 @@
     </ul>
 	</div>--></div>
       <script>
-           $("#author-page").on("pageshow",function(event, ui){
+           $("#author-page").one("pageshow",function(event, ui){
             loading();
                 app.authors();
+               });
   $('a').click(function(e){
               var href = ["#panel-left", "#panel-right", "#"];
         if (!( $.inArray($(e.currentTarget).attr('href'), href) != -1  || $(e.currentTarget).attr('in-app') == 'true')) {
@@ -111,7 +112,7 @@
       $("#panel-left").on("click", function () {
    $("#panel-left").panel("close");
   });   
-        });
+        
        
        
           </script>

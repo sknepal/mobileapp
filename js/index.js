@@ -212,7 +212,7 @@ var app = {
         function getPosts() {
             var jsonRequest;
             var count = 13; var wrap ;
-          var listview = "home-page-posts";
+         var listview = $.mobile.activePage.attr('id') + "-posts";
             var dfd = $.Deferred();
               var templatesource = "#blog-template";
             var jsonURL = "http://thelacunablog.com/?json=";
@@ -221,7 +221,7 @@ var app = {
                 jsonURL += jsonRequest;
                 jsonURL += '&slug=' + arg + '&page=' + pagecount + '&count=' + count;
                 wrap = ".cwrapper";
-                listview = $.mobile.activePage.attr('id') + "-posts";
+                
               templatesource = "#cat-template";
                
                 
@@ -244,6 +244,8 @@ var app = {
                 jsonRequest = "get_author_posts";
                 jsonURL += jsonRequest;
                 jsonURL += '&slug=' + arg + '&page=' + pagecount + '&count=' + count;
+                 templatesource = "#authorposts-template";
+                wrap = ".awrapper";
             }
        
   /*          var dfd = $.Deferred();

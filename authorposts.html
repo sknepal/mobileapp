@@ -70,10 +70,10 @@
         <li class="miscellaneous"><a href="" onclick="changePage('category.html?cat=miscellaneous');" title="Miscellaneous" data-rel="close" in-app="true">Miscellaneous</a></li>
       </ul>
     </div>
-    <div id="blog-content" data-role="content" class="blog">
+    <div id="authorposts-content" data-role="content" class="authorpostsblog">
       
-      <div id="blog-data" data-iscroll="" class="wrapper">
-      <script id="blog-template" type="text/x-handlebars-template">
+      <div id="blog-data" data-iscroll="" class="awrapper">
+      <script id="authorposts-template" type="text/x-handlebars-template">
           {{#each posts}}
            <li><a data-transition="flip" href="single.html?{{@index}}" in-app="true">
                       <h3>{{{this.title}}}</h3>
@@ -94,12 +94,13 @@
     <li><a href="javascript:next('author', urlParams['authname'])" data-icon="arrow-r" in-app="true"></a></li>
     </ul>
 	</div></div>
-      <script type="text/javascript">$(document).ready(function() {
-    page = 1;
+      <script type="text/javascript">
+           page = 1;
+           $("#authorposts-page").one("pageshow",function(event, ui){
+   
   // Handler for .ready() called.
     loading();
-    });
-    var urlParams;
+               var urlParams;
 (window.onpopstate = function () {
     
   var match,
@@ -113,6 +114,8 @@
     urlParams[decode(match[1])] = decode(match[2]);
   })();
    app.get("author", 1, urlParams["authname"]);
+    });
+   
               $('form').on('submit',function(e) {
       e.preventDefault();  });
               $('a').click(function(e){
